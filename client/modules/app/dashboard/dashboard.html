@@ -1,0 +1,16 @@
+<div>
+    <button id="btnProspects" name="Prospect" ng-click="dashboard.initializeDashBoardGrid();" > Prospect </button>
+    <button id="btnProspectClear" name="Prospect" ng-click="dashboard.clrDashBoardGrid();" > Clear Prospect </button>
+</div>
+
+<div ui-grid="dashboard.dashBoardGrid" id="grid1" ui-grid-edit ui-grid-exporter ui-grid-selection ui-grid-pagination class="user-profile-table">
+
+</div>
+
+<div ng-click="dashboard.showAgeModal();"> {{dashboard.ageList}}
+     Click
+</div>
+
+<div ng-repeat="age in dashboard.ageList">
+    {{age}}
+    </div>

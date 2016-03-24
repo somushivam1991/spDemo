@@ -1,0 +1,36 @@
+<div class="wrapper">
+    <!--Header Starts -->
+    <header>
+        <div class="row main-row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margTopBot">
+                <div class="logo"></div>
+            </div>
+        </div>
+    </header>
+    <!--Header Ends -->
+
+    <div class="section loginSection">
+        <div class="row main-row">
+            <div class="col-lg-7 col-md-7 col-sm-4"></div>
+            <div class="col-lg-4 col-md-4 col-sm-7 col-xs-12 topMarg">
+                <div class="loginUser">
+                    <div class="loginHeader">Retail Login</div>
+                    <div class="loginForm">
+                        <label>Username</label>
+                        <input type="text" class="formControl" ng-model="home.vm.username" required sa-allow-only="numbers">
+                        <label>Password</label>
+                        <input type="password" class="formControl" ng-model="home.vm.password" required>
+                        <label><a class="pull-right">Forgot Password ?</a></label>
+                        <button class="btn btn-primary" type="submit" ng-click="home.onSubmitClick()">Sign In</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1"></div>
+        </div>
+    </div>
+
+    <!--Footer Starts -->
+    <footer class="margNone">
+        <div class="footer">Copyright ® 2016 Sierra Pacific Mortgage. All Rights Reserved.</div>
+    </footer>
+</div>

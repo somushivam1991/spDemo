@@ -1,0 +1,169 @@
+/***Global CSS***/
+body{}
+.wrapper{ margin: 0 auto; background-color:#0076c0;}
+ul,li{margin: 0;padding: 0;list-style: none}
+.padLeftNone{padding-left:0}
+.padRightNone{padding-right:0}
+.margNone{margin:0;}
+.container{background-color:#0076c0;}
+.divSpace{margin-top:10px; margin-bottom:10px;}
+.carousel-control{opacity:.9;}
+.padDiv{padding:10px;}
+.main-row{margin-left:15px; margin-right:15px;}
+.margRow{margin-top:40px;}
+.margTopBot{margin-top:40px; margin-bottom:40px;}
+
+/******Font Embedding******/
+@font-face {
+    font-family: 'roboto-regular';
+    src: url('../../fonts/Roboto-Regular.ttf');
+}
+@font-face {
+    font-family: 'roboto-bold';
+    src: url('../../fonts/Roboto-Bold.ttf');
+}
+@font-face {
+    font-family: 'roboto-light';
+    src: url('../../fonts/Roboto-Light.ttf');
+}
+@font-face {
+    font-family: 'roboto-semibold';
+    src: url('../../fonts/Roboto-Medium.ttf');
+}
+.fontBold{font-family: 'roboto-bold';}
+.fontSemiBold{font-family: 'roboto-semibold';}
+.fontLight{font-family: 'roboto-regular';}
+
+
+
+/****Header CSS******/
+
+header{}
+.logo{background: url("../../../images/logo.png")no-repeat; width: 190px; height: 37px; background-size: 100%;}
+.navbar-inverse{background-color:transparent; border-color:transparent;}
+.navbar-inverse .navbar-nav > li > a{color:#8fc2e2;}
+.navbar-nav > li{margin-left:20px; text-align:center;}
+.message{background: url("../../../../images/message-icon.png")no-repeat; width: 25px; height: 25px; position:relative; margin-left:10px;}
+.navbar.navbar-inverse .dropdown .btn-primary{background-color:transparent; border-color:transparent; margin-top:7px;}
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary.focus:active, .btn-primary:active:focus, .btn-primary:active:hover, .open > .dropdown-toggle.btn-primary.focus, .open > .dropdown-toggle.btn-primary:focus, .open > .dropdown-toggle.btn-primary:hover{background-color:transparent; border-color:transparent;}
+.btn .caret{margin-left:5px;}
+.message .msgCount{ background-color:#ff6363; width:20px; height:20px; border-radius:50%; color: #fff; padding: 1px 15px 0 6px; position: absolute; top: -10px; right: -3px;}
+.dropdownBorder {border: 1px solid #fff; border-radius: 8px; padding: 0 0 4px 0;}
+.activeLi{background: url("../../../images/bottomLine.png")no-repeat; color:#fff !important; background-position: bottom center;}
+.messageLi{background: url("../../../images/sideBorder.png")no-repeat;  background-position: right 18px;}
+/****Header CSS******/
+
+/****Footer CSS******/
+
+footer{ background-color:#ebebeb; margin-top:7px;}
+footer .footer{padding:6px; text-align:center; font-size:12px; font-family:roboto-light;}
+/****Footer CSS******/
+
+/****Left Side Area CSS******/
+
+.sideTabs li{background-color:#3c99f3; color:#fff; font-family:roboto-regular; border-radius:4px; margin-bottom:8px; text-align:center; padding:8px; font-size:14px; cursor:pointer;}
+.sideTabs li:last-child{background:none;}
+.userProfile li{ cursor:pointer; position:relative; color:#fff; margin-bottom:14px;}
+.userProfile li:hover{background-color:#12508c;}
+.activeSideProfl {background-color:#12508c;}
+.userProfile .firstPro{background-image: url("../../../images/profile-icon.png"); height:48px; padding: 0 0 0 50px; background-position:5px; background-repeat:no-repeat;}
+.firstPro .name, .secondPro .name, .thirdPro .name{position: absolute; top: 4px;}
+.firstPro .value, .secondPro .value, .thirdPro .value{position: absolute; top: 25px;}
+.firstPro .order, .secondPro .order, .thirdPro .order{ position: absolute; right: 5px; top: 10px; background-color: #e4e4e4; padding: 4px 10px 4px 10px; color:#175c9f; font-family:roboto-bold;}
+.userProfile .secondPro{background-image: url("../../../images/prifleFemale.png"); background-position:5px; background-repeat:no-repeat; height:48px; padding: 0 0 0 50px;}
+.userProfile .thirdPro{background-image: url("../../../images/profile-icon.png"); height:48px; padding: 0 0 0 50px; background-position:5px; background-repeat:no-repeat;}
+.announcmt{border:1px solid #29a0ea; color:#fff; margin-bottom:5px;}
+.announcmt .headng{background-color:#3d8ad5; font-family:roboto-semibold; padding:10px; text-align:center;}
+.announcmt .announcmtItems{ padding:10px !important; font-size:14px; height:190px; }
+.announcmtItems li{margin-bottom:22px;}
+.announcmtItems h4{font-size:14px; font-family:roboto-semibold; line-height:5px;}
+.jspDrag{background:#29a0ea; width:4px;}
+.jspTrack, .jspVerticalBar{background:none;}
+/****Left Side Area CSS******/
+
+/****Dash Board CSS******/
+.boardItems{background-color:#fff; padding:10px 10px; }
+.nav.nav-tabs li a{ font-size:16px; font-family:roboto-semibold; color:#909090;}
+.nav.nav-tabs li.active a{color:#175c9f;}
+div.dataTables_wrapper { }
+#firstTable_length, #firstTable_info, #firstTable_paginate, #alertTable_info{display:none;}
+.dataTables_wrapper.no-footer .dataTables_scrollBody, table.dataTable tr th, table.dataTable tr td{border:none;}
+table.dataTable thead tr{background-color:#ededed;}
+table.dataTable td{color:#818181; font-family:roboto-regular; font-size:13px;}
+table.dataTable.nowrap th, table.dataTable.nowrap td{text-align:center;}
+table.dataTable tbody, table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.odd, table.dataTable tbody tr{background-color:#e6fbff;}
+table.dataTable.order-column tbody tr > .sorting_1, table.dataTable.order-column tbody tr > .sorting_2, table.dataTable.order-column tbody tr > .sorting_3, table.dataTable.display tbody tr > .sorting_1, table.dataTable.display tbody tr > .sorting_2, table.dataTable.display tbody tr > .sorting_3{background-color:#e6fbff;}
+table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.dataTable.display tbody th, table.dataTable.display tbody td{border:none;}
+table.dataTable.display tbody tr:hover > .sorting_1, table.dataTable.order-column.hover tbody tr:hover > .sorting_1{background-color:#e6fbff;}
+table.dataTable.display tbody {background-color:#e6fbff !important;}
+table.dataTable tbody tr:hover{ background-color:#4bceda !important;}
+table.dataTable tbody tr:hover td{color:#fff;}
+#alertTable table.dataTable.display tbody {background-color:#fff !important;}
+#alertTable.dataTable tbody, #alertTable.dataTable.stripe tbody tr.odd, #alertTable.dataTable.display tbody tr.odd, #alertTable.dataTable tbody tr{background-color:#fff;}
+.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody th, .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody td{padding-top:10px; padding-bottom:10px;}
+.dataTables_scrollBody{margin-top:2px;}
+table.dataTable thead th{ color:#484848; font-family:roboto-regular; font-size:14px;}
+.tab-content label{font-size:18px; color:#484848; font-family:roboto-regular; margin-bottom:10px;}
+.padLeftDiv{padding: 10px 30px 10px 30px;}
+.tab-content .jspDrag{ background-color:#c1c0c0;}
+.divideRow:after{ content: ''; border-left: 1px solid #ccc; position: absolute; height: 110%; right: 0; top: -7%;}
+#pipeline .btn{padding:2px 10px; float:right; margin-right:20px;}
+.searchControl{ width:100%; border-radius:3px; border:1px solid #ccc; padding:2px 10px;}
+#pipeline .dropdown .btn-primary{background-color:transparent; border-color:transparent; color:#565656; border:1px solid #ccc; width:100%; margin-bottom:10px;}
+.tab-pane{min-height:60rem;}
+.nav-tabs > li{margin-bottom:-3px; }
+.nav-tabs > li:first-child{margin-left:30px;}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover{border:2px solid #ddd; border-bottom-color: transparent;}
+.nav-tabs{border-bottom:2px solid #ddd;}
+/****Dash Board CSS******/
+
+/****Login CSS******/
+
+.loginSection{background: url("../../../../images/secBack-img.png") 0 0 no-repeat; min-height:100%; width:100%; background-size:100%; height:713px;}
+.loginUser{background-color:#0076c0; padding:50px; width:100%; min-height:100%;}
+.loginHeader{ font-family:roboto-regular; font-size:34px; color:#fff; margin-bottom:20px;}
+.loginForm label, .loginForm input{display:block; margin-top:10px; margin-bottom:10px; width:100%; font-family:roboto-light; font-size:16px; color:#f8f8f8;}
+.loginForm input[type=text]{margin-bottom:20px;}
+.loginForm input{border:1px solid #f8f8f8; border-radius:3px; background-color:transparent; padding:2px 10px;}
+.loginForm label a{font-family:roboto-light; font-size:16px; color:#f8f8f8; text-decoration:none; cursor:pointer;}
+.loginForm .btn-primary{ display:block; background-color:#f8f8f8; color:#1e67ac; font-size:16px; font-family:roboto-semibold; margin: 40px 0; padding: 10px 25px;}
+.topMarg{margin-top:10%;}
+/****Login CSS******/
+
+/****Responsive CSS******/
+
+@media screen and (max-width: 1600px) {
+    .loginSection{background-repeat:repeat-y;}  
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation:portrait) {
+    .logo{width:120px;}
+    .navbar-nav > li{margin-left:0;}
+    .btn .caret{margin-left:1px;}
+    .nav > li > a{padding:10px;}
+    .btn{padding:6px 8px;}
+    
+    
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation:landscape) {
+    .logo{width:140px;}
+    .navbar-nav > li{margin-left:5px;}
+    #pipeline .btn{margin-right:0;}   
+}
+
+
+@media screen and (max-width: 767px) {
+    .message{ margin-top: 15px; position: relative; margin-left: auto; margin-right: auto; }
+    .dropdownBorder{border:none;}
+    .logo{width:140px;}
+    .divideRow:after{border:none;}
+    #myNavbar .nav.navbar-nav > li{margin-top:10px; margin-bottom:10px;}
+    #myNavbar .nav.navbar-nav > li:hover a{color:#242424; font-family:roboto-semibold;}
+    #myNavbar .nav.navbar-nav > li > a{color:#8fc2e2;}
+    #myNavbar .nav.navbar-nav .btn-primary{background-color:transparent; border:none;}
+    #pipeline .btn{margin-right:0;}
+    /*.loginSection{height: 600px;}*/
+}
+
+/****Responsive CSS******/
