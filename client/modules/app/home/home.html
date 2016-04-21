@@ -1,36 +1,89 @@
-<div class="wrapper">
-    <!--Header Starts -->
-    <header>
-        <div class="row main-row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margTopBot">
-                <div class="logo"></div>
-            </div>
-        </div>
-    </header>
-    <!--Header Ends -->
-
-    <div class="section loginSection">
-        <div class="row main-row">
-            <div class="col-lg-7 col-md-7 col-sm-4"></div>
-            <div class="col-lg-4 col-md-4 col-sm-7 col-xs-12 topMarg">
-                <div class="loginUser">
-                    <div class="loginHeader">Retail Login</div>
-                    <div class="loginForm">
-                        <label>Username</label>
-                        <input type="text" class="formControl" ng-model="home.vm.username" required sa-allow-only="numbers">
-                        <label>Password</label>
-                        <input type="password" class="formControl" ng-model="home.vm.password" required>
-                        <label><a class="pull-right">Forgot Password ?</a></label>
-                        <button class="btn btn-primary" type="submit" ng-click="home.onSubmitClick()">Sign In</button>
-                    </div>
+<form ng-submit="home.onSubmitClick()" name="loginform">
+    <div class="wrapper">
+        <!--Header Starts -->
+        <header>
+            <div class="row main-row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 headerMargTpBt">
+                    <div class="logo"></div>
                 </div>
             </div>
-            <div class="col-lg-1 col-md-1 col-sm-1"></div>
-        </div>
-    </div>
+        </header>
+        <!--Header Ends -->
 
-    <!--Footer Starts -->
-    <footer class="margNone">
-        <div class="footer">Copyright ® 2016 Sierra Pacific Mortgage. All Rights Reserved.</div>
-    </footer>
-</div>
+        <div class="section loginSection">
+            <div class="row main-row">
+                <div class="col-lg-7 col-md-6 col-sm-4"></div>
+                <div class="col-lg-5 col-md-6 col-sm-7 col-xs-12 topMarg padZeroRes">
+                    <div class="loginUser">
+                        <div class="loginHeader">Retail Login</div>
+                        <div class="loginForm">
+                            <label>Username</label>
+                            <input type="text" name="username" class="formControl userNoWarningBox_login" ng-model="home.vm.login.username" ng-class="{'userWarningBox_login': ( home.vm.error.usernameRequired )}">
+                            <span ng-class="{'userWarningMessage' : home.vm.error.usernameRequired , 'userNoWarningMessage' : !home.vm.error.usernameRequired }">Username is required</span>
+                            <label>Password</label>
+                            <input type="password" class="formControl userNoWarningBox_login" ng-model="home.vm.login.password" ng-class="{'userWarningBox_login': home.vm.error.passwordRequired}">
+                            <span ng-class="{'userWarningMessage' : home.vm.error.passwordRequired , 'userNoWarningMessage' : !home.vm.error.passwordRequired }">Password is required</span>
+                            <label class="forgotPasswordLabel"><a class="pull-right" ui-sref="forget-password">Forgot Password ?</a></label>
+                            <br />
+                            <span ng-class="{'userWarningMessage' : (home.vm.error.invalidCredential && !(home.vm.error.usernameRequired || home.vm.error.passwordRequired)), 'userNoWarningMessage' : !(home.vm.error.invalidCredential && !(home.vm.error.usernameRequired || home.vm.error.passwordRequired)) }">{{home.errorMessage}} &nbsp;</span>
+                        </div>
+                        <div class="loginBtn">
+                            <button class="btn btn-primary" type="submit" ng-disabled="home.isBusy">Sign In</button>
+                            <div ng-show="home.isBusy" class="loginLoader"></div>
+                            <div class="clearFix"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--Footer Starts -->
+        <footer class="margNone">
+            <div class="footer">Copyright ® 2016 Sierra Pacific Mortgage. All Rights Reserved.</div>
+        </footer>
+    </div>
+</form>
+<script>
+    $(document).ready(function () {
+            //alert(window.location.href);
+            var navAddress = window.location.href;
+            var currentPge = navAddress.split('/')[3];
+           
+           // alert(currentPge);
+            if(currentPge=="")
+			setMainContentSize();
+		});
+
+		 $(window).resize(function () {
+             
+            var navAddress = window.location.href;
+            var currentPge = navAddress.split('/')[3];
+           
+           // alert(currentPge);
+             if(currentPge=="")
+			 setMainContentSize();
+		 });
+		function setMainContentSize(){
+            //alert('im executed');
+			var headerHeight =  $("header").height();
+			var footerHeight = $("footer").height();
+			var windowHeight = $(window).height();
+			var contentHeight; 
+			//console.log("headerHeight ="+headerHeight+ " footerHeight =  "+footerHeight+"windowHeight = "+windowHeight);
+			if(windowHeight >767){
+                contentHeight= windowHeight - headerHeight - footerHeight; 
+                
+				var content = document.querySelector('.section');
+				content.style.height = contentHeight+"px";
+			}else{
+                
+                contentHeight= windowHeight - headerHeight; 
+				var content = document.querySelector('.section');
+				content.style.height = contentHeight+"px"; 
+                
+            }
+		}
+
+</script>

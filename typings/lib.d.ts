@@ -8,3 +8,5 @@
 /// <reference path="ui-grid/ui-grid.d.ts" />
 /// <reference path="angular-toastr/angular-toastr.d.ts" />
 /// <reference path="../bower_components/ng-template-core/dist/core.d.ts" />
+/// <reference path="angular-ui-bootstrap/angular-ui-bootstrap.d.ts" />
+/// <reference path="moment/moment.d.ts" />

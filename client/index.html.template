@@ -3,11 +3,14 @@
 <head>
     <base href="/">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">   
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'> 
 
-    <title shared-title="shell.title">Sierra Pacific Retail POS</title>
+    <title ngt-title="shell.title">Sierra Pacific Retail POS</title>
 
     <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
 
@@ -16,7 +19,7 @@
     <!-- endinject -->
     <!-- endbuild -->
 
-   
+    <link rel="icon" type="image/png" href="/images/title-logo.png">
 </head>
 <body>
     <div ui-view></div>

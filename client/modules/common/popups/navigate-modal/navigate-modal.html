@@ -1,0 +1,14 @@
+<div class="modal-header confirmationHeader">
+    <p>{{modal.data.title}}</p>
+</div>
+
+<div class="modal-body confirmationContent">
+    <div ng-repeat="message in modal.data.messages">
+    {{message}}
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-success" ng-click="modal.ok()">{{modal.data.okTitle}}</button>
+    <span class="toCont">to continue</span>
+</div>

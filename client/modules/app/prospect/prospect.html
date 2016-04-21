@@ -1,0 +1,997 @@
+<ng-form name="prospectForm">
+    <div class="fullScreenLoader" ng-show="createProspect.isBusy">
+        <div class="spinner"></div>
+    </div>
+    <div class="prospectFormInnerContainer ">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 prospectHead">
+                <h2>{{createProspect.headerProspect}}</h2>
+            </div>
+        </div>
+        <div class="row borrower_cnp">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 borrowerMain_cnp leftFrom">
+                <h3>Borrower</h3>
+                <div class="row rowSpace">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">First Name*</label>
+                        <input type="text" class="formControl" name="prospects0fName" ng-model="createProspect.vm.prospects[0].firstName" ng-class="{'error': prospectForm.prospects0fName.$touched && !createProspect.vm.prospects[0].firstName}">
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Middle Name</label>
+                        <input type="text" class="formControl" ng-model="createProspect.vm.prospects[0].middleName">
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Last Name*</label>
+                        <input type="text" class="formControl" ng-model="createProspect.vm.prospects[0].lastName" name="prospects0lName" ng-class="{'error': prospectForm.prospects0lName.$touched && !createProspect.vm.prospects[0].lastName}">
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+                        <label class="formLabel">Suffix</label>
+                        <div>
+                            <!--<ngt-dropdown class="dropdown" ng-model="createProspect.vm.prospects[0].suffixName" items="createProspect.masters.suffix"
+                            display-text="text" value="value"></ngt-dropdown>-->
+                            <ui-select ng-model="createProspect.vm.prospects[0].suffixName">
+                                <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                                <ui-select-choices repeat="d.value as d in createProspect.masters.suffix | filter: { text: $select.search }">
+                                    <span ng-bind-html="d.text | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row rowSpace">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Nickname</label>
+                        <input type="text" class="formControl" ng-model="createProspect.vm.prospects[0].nickName">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Date of Birth</label>
+                        <div class="input-group">
+                            <input type="text" ng-disabled="true" class="formControl" ng-model="createProspect.vm.prospects[0].dateOfBirth" ng-model-options="{allowInvalid: true}"
+                            si-datepicker="createProspect.prospectsDatePicker[0]" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row rowSpace">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Email</label>
+                        <input type="text" class="formControl" ng-class="{'error' : createProspect.emailValidation(0, 'mail')}" ng-model="createProspect.vm.prospects[0].email"
+                        ng-blur="createProspect.setPreferredContact('primary')">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Alternate Email</label>
+                        <input type="text" class="formControl" ng-model="createProspect.vm.prospects[0].alternateEmail" ng-class="{'error' : createProspect.emailValidation(0, 'amail')}">
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Home Phone</label>
+                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-model="createProspect.vm.prospects[0].homePhone" ng-blur="createProspect.setPreferredContact('primary')"
+                        name="homePhone0" ng-class="{'error' : !!createProspect.vm.prospects[0].homePhone && createProspect.vm.prospects[0].homePhone.length < 10 && prospectForm.homePhone0.$touched}">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Work Phone</label>
+                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-model="createProspect.vm.prospects[0].workPhone" ng-blur="createProspect.setPreferredContact('primary')"
+                        name="workPhone0" ng-class="{'error' : !!createProspect.vm.prospects[0].workPhone && createProspect.vm.prospects[0].workPhone.length < 10 && prospectForm.workPhone0.$touched}">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Cell Phone</label>
+                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-model="createProspect.vm.prospects[0].cellPhone" ng-blur="createProspect.setPreferredContact('primary')"
+                        name="cellPhone0" ng-class="{'error' : !!createProspect.vm.prospects[0].cellPhone && createProspect.vm.prospects[0].cellPhone.length < 10 && prospectForm.cellPhone0.$touched}">
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 formDropdown">
+                        <label class="formLabel">Preferred Contact Method</label>
+                        <ui-select ng-model="createProspect.vm.prospects[0].preferredContactMethod" class="dropdown">
+                            <ui-select-match placeholder="Select..." allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                            <ui-select-choices repeat="d.value as d in createProspect.primaryContact | filter:  { text: $select.search }" ui-disable-choice="d.disabled">
+                                <span ng-bind-html="d.text | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
+
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+
+                        <label class="formLabel">Best Time to Contact You</label>
+                        <div class="input-group">
+                            <input type="text" ng-disabled="true" class="formControl" ng-model="createProspect.vm.prospects[0].bestTimeToContact" ng-model-options="{allowInvalid: true}"
+                            si-datepicker="createProspect.bestTimeDatePicker[0]" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 formDropdown timerContainer">
+                        <fieldset>
+                            <timepicker ng-model="createProspect.vm.prospects[0].bestTime" hour-step="1" minute-step="1" show-meridian="true"></timepicker>
+                        </fieldset>
+
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <p class="presntAdd">Present Address</p>
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                        <label class="formLabel">Street</label>
+                        <input type="text" class="formControl" ng-model="createProspect.vm.prospects[0].streetAddress">
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <label class="formLabel">City</label>
+                        <input type="text" class="formControl" ng-model="createProspect.vm.prospects[0].city">
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 formDropdown">
+                        <label class="formLabel">State</label>
+                        <div>
+                            <!--<ngt-dropdown class="dropdown" ng-model="createProspect.vm.prospects[0].state" items="createProspect.states" display-text="text"
+                            value="value"></ngt-dropdown>-->
+                            <ui-select ng-model="createProspect.vm.prospects[0].state">
+                                <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                                <ui-select-choices repeat="d.value as d in createProspect.states | filter: { text: $select.search }">
+                                    <span ng-bind-html="d.text | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">ZIP Code</label>
+                        <input type="text" maxlength="5" sa-allow-only="numbers" class="formControl" ng-model="createProspect.vm.prospects[0].zip"
+                        name="zipcode0" ng-class="{'error': createProspect.vm.prospects[0].zip && createProspect.vm.prospects[0].zip.length < 5 && prospectForm.zipcode0.$touched}">
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 coBorrower_cnp rightFrom" ng-class="{'formInactive': !createProspect.vm.isCoborrower[1]}">
+                <input type="checkbox" id="coBorrower" ng-click="createProspect.clearCoBorrower(1)" ng-model="createProspect.vm.isCoborrower[1]"
+                />
+                <label for="coBorrower">co-borrower</label>
+                <div class="row rowSpace">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">First Name*</label>
+                        <input type="text" class="formControl" name="prospects1fName" ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].firstName"
+                        ng-class="{'error': prospectForm.prospects1fName.$touched && !createProspect.vm.prospects[1].firstName && createProspect.vm.isCoborrower[1]}">
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Middle Name</label>
+                        <input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].middleName">
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Last Name*</label>
+                        <input type="text" class="formControl" name="prospects1lName" ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].lastName"
+                        ng-class="{'error': prospectForm.prospects1lName.$touched && !createProspect.vm.prospects[1].lastName && createProspect.vm.isCoborrower[1]}">
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+                        <label class="formLabel">Suffix</label>
+                        <div>
+                            <!--<ngt-dropdown class="dropdown" ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].suffixName"
+                            items="createProspect.masters.suffix" display-text="text" value="value"></ngt-dropdown>-->
+                            <ui-select ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].suffixName">
+                                <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                                <ui-select-choices repeat="d.value as d in createProspect.masters.suffix | filter: { text: $select.search }">
+                                    <span ng-bind-html="d.text | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row rowSpace">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Nickname</label>
+                        <input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].nickName">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+
+                        <label class="formLabel">Date of Birth</label>
+                        <div class="input-group">
+                            <input type="text" ng-disabled="true" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].dateOfBirth"
+                            ng-model-options="{allowInvalid: true}" si-datepicker="createProspect.prospectsDatePicker[1]"
+                            />
+                            
+                            
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row rowSpace">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Email</label>
+                        <input type="text" class="formControl" ng-class="{'error' : createProspect.emailValidation(1, 'mail')}" ng-disabled="!createProspect.vm.isCoborrower[1]"
+                        ng-model="createProspect.vm.prospects[1].email" ng-change="createProspect.setPreferredContact('primary1')">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Alternate Email</label>
+                        <input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]" ng-class="{'error' : createProspect.emailValidation(1, 'amail')}"
+                        ng-model="createProspect.vm.prospects[1].alternateEmail">
+                    </div>
+                </div>
+
+                <div class="row rowSpace">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Home Phone</label>
+                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].homePhone"
+                        ng-blur="createProspect.setPreferredContact('primary1')" name="homePhone1" ng-class="{'error' : !!createProspect.vm.prospects[1].homePhone && createProspect.vm.prospects[1].homePhone.length < 10 && prospectForm.homePhone1.$touched}">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Work Phone</label>
+                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].workPhone"
+                        ng-blur="createProspect.setPreferredContact('primary1')" name="workPhone1" ng-class="{'error' : !!createProspect.vm.prospects[1].workPhone && createProspect.vm.prospects[1].workPhone.length < 10 && prospectForm.workPhone1.$touched}">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Cell Phone</label>
+                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].cellPhone"
+                        ng-change="createProspect.setPreferredContact('primary1')"
+                        name="cellPhone1" ng-class="{'error' : !!createProspect.vm.prospects[1].cellPhone && createProspect.vm.prospects[1].cellPhone.length < 10 && prospectForm.cellPhone1.$touched}">
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 formDropdown">
+                        <label class="formLabel">Preferred Contact Method</label>
+                        <ui-select ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].preferredContactMethod">
+                            <ui-select-match placeholder="Select..." allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                            <ui-select-choices repeat="d.value as d in createProspect.coBorContact | filter:  { text: $select.search }" ui-disable-choice="d.disabled">
+                                <span ng-bind-html="d.text | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+
+                        <label class="formLabel">Best Time to Contact You</label>
+                        <div class="input-group">
+                            <input type="text" ng-disabled="true" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].bestTimeToContact"
+                            ng-model-options="{allowInvalid: true}" si-datepicker="createProspect.bestTimeDatePicker[1]"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 formDropdown timerContainer">
+                        <fieldset>
+                            <timepicker ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].bestTime" hour-step="1"
+                            minute-step="1" show-meridian="true"></timepicker>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <p class="presntAdd">Present Address</p>
+                        <!--<img ng-class="{'mouseNone': !createProspect.vm.isCoborrower[1] }" src='client/assets/images/copy_icon.png' ng-click="createProspect.copyAddress()">-->
+                        <div class="clickToCopy"><span class="fa fa-copy copyIcn" ng-class="{'mouseNone': !createProspect.vm.isCoborrower[1] }" ng-click="createProspect.copyAddress(0, 1)"></span><span><small>Click to copy address from borrower</small></span></div>
+                    </div>
+
+
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                        <label class="formLabel">Street</label>
+                        <input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].streetAddress"
+                        />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <label class="formLabel">City</label>
+                        <input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].city"
+                        />
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 formDropdown">
+                        <label class="formLabel">State</label>
+                        <div>
+                            <!--<ngt-dropdown class="dropdown" ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].state"
+                            items="createProspect.states" display-text="text" value="value"></ngt-dropdown>-->
+                            <ui-select ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].state">
+                                <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                                <ui-select-choices repeat="d.value as d in createProspect.states | filter: { text: $select.search }">
+                                    <span ng-bind-html="d.text | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">ZIP Code</label>
+                        <input type="text" maxlength="5" sa-allow-only="numbers" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]"
+                        ng-model="createProspect.vm.prospects[1].zip"
+                        name="zipcode1" ng-class="{'error': createProspect.vm.prospects[1].zip && createProspect.vm.prospects[1].zip.length < 5 && prospectForm.zipcode1.$touched}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row rowSpace applicant_cnp" ng-show="createProspect.applicantOneShow">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 leftFrom mainApplicant_cnp">
+
+                <div class="row rowSpace">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <h3>Applicant</h3>
+                    </div>
+                </div>
+
+
+                <div class="row rowSpace">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">First Name*</label>
+                        <input type="text" class="formControl" name="prospects2fName" ng-class="{'error': prospectForm.prospects2fName.$touched && !createProspect.vm.prospects[2].firstName}"
+                        ng-model="createProspect.vm.prospects[2].firstName">
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Middle Name</label>
+                        <input type="text" class="formControl" ng-model="createProspect.vm.prospects[2].middleName">
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Last Name*</label>
+                        <input type="text" class="formControl" name="prospects2lName" ng-class="{'error': prospectForm.prospects2lName.$touched && !createProspect.vm.prospects[2].lastName}"
+                        ng-model="createProspect.vm.prospects[2].lastName">
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+                        <label class="formLabel">Suffix</label>
+                        <div>
+                            <!--<ngt-dropdown class="dropdown" ng-model="createProspect.vm.prospects[2].suffixName" items="createProspect.masters.suffix"
+                            display-text="text" value="value"></ngt-dropdown>-->
+                            <ui-select ng-model="createProspect.vm.prospects[2].suffixName">
+                                <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                                <ui-select-choices repeat="d.value as d in createProspect.masters.suffix | filter: { text: $select.search }">
+                                    <span ng-bind-html="d.text | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row rowSpace">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Nickname</label>
+                        <input type="text" class="formControl" ng-model="createProspect.vm.prospects[2].nickName">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+
+                        <label class="formLabel">Date of Birth</label>
+                        <div class="input-group">
+                            <input type="text" ng-disabled="true" class="formControl" ng-model="createProspect.vm.prospects[2].dateOfBirth" ng-model-options="{allowInvalid: true}"
+                            si-datepicker="createProspect.prospectsDatePicker[2]" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row rowSpace">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Email</label>
+                        <input type="text" class="formControl" ng-class="{'error' : createProspect.emailValidation(2, 'mail')}" ng-model="createProspect.vm.prospects[2].email">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Alternate Email</label>
+                        <input type="text" class="formControl" ng-class="{'error' : createProspect.emailValidation(2, 'amail')}" ng-model="createProspect.vm.prospects[2].alternateEmail">
+                    </div>
+                </div>
+
+                <div class="row rowSpace">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Home Phone</label>
+                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" 
+                        ng-model="createProspect.vm.prospects[2].homePhone" name="homePhone2" ng-class="{'error' : !!createProspect.vm.prospects[2].homePhone && createProspect.vm.prospects[2].homePhone.length < 10 && prospectForm.homePhone2.$touched}">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Work Phone</label>
+                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-model="createProspect.vm.prospects[2].workPhone"
+                        name="workPhone2" ng-class="{'error' : !!createProspect.vm.prospects[2].workPhone && createProspect.vm.prospects[2].workPhone.length < 10 && prospectForm.workPhone2.$touched}">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Cell Phone</label>
+                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-model="createProspect.vm.prospects[2].cellPhone"
+                        name="cellPhone2" ng-class="{'error' : !!createProspect.vm.prospects[2].cellPhone && createProspect.vm.prospects[2].cellPhone.length < 10 && prospectForm.cellPhone2.$touched}">
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <p class="presntAdd">Present Address</p>
+                        <div class="clickToCopy"><span class="fa fa-copy copyIcn" ng-click="createProspect.copyAddress(0, 2)"></span><span><small>Click to copy address from borrower</small></span></div>
+                        <!--<div class="clickToCopy"><img src='client/assets/images/copy_icon.png'><span><small>Click to copy address from borrower</small></span></div>-->
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                        <label class="formLabel">Street</label>
+                        <input type="text" class="formControl" ng-model="createProspect.vm.prospects[2].streetAddress">
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <label class="formLabel">City</label>
+                        <input type="text" class="formControl" ng-model="createProspect.vm.prospects[2].city">
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 formDropdown">
+                        <label class="formLabel">State</label>
+                        <div>
+                            <!--<ngt-dropdown class="dropdown" ng-model="createProspect.vm.prospects[2].state" items="createProspect.states" display-text="text"
+                            value="value"></ngt-dropdown>-->
+                            <ui-select ng-model="createProspect.vm.prospects[2].state">
+                                <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                                <ui-select-choices repeat="d.value as d in createProspect.states | filter: { text: $select.search }">
+                                    <span ng-bind-html="d.text | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">ZIP Code</label>
+                        <input type="text" maxlength="5" sa-allow-only="numbers" class="formControl" ng-model="createProspect.vm.prospects[2].zip"
+                        name="zipcode2" ng-class="{'error': createProspect.vm.prospects[2].zip && createProspect.vm.prospects[2].zip.length < 5 && prospectForm.zipcode2.$touched}">
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 rightFrom coApplicant_cnp" ng-class="{'formInactive': !createProspect.vm.isCoborrower[3]}">
+                <div class="row rowSpace">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <input type="checkbox" id="coApplicnt" ng-click="createProspect.clearCoBorrower(3)" ng-model="createProspect.vm.isCoborrower[3]"
+                        />
+                        <label for="coApplicnt" class="coApplicnt">co-applicant</label>
+                    </div>
+                </div>
+
+
+                <div class="row rowSpace">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">First Name*</label>
+                        <input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]" name="prospects3fName" ng-class="{'error': createProspect.vm.isCoborrower[3] && prospectForm.prospects3fName.$touched && !createProspect.vm.prospects[3].firstName}"
+                        ng-model="createProspect.vm.prospects[3].firstName">
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Middle Name</label>
+                        <input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]" ng-model="createProspect.vm.prospects[3].middleName">
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Last Name*</label>
+                        <input type="text" class="formControl" name="prospects3lName" ng-class="{'error': createProspect.vm.isCoborrower[3] && prospectForm.prospects3lName.$touched && !createProspect.vm.prospects[3].lastName}"
+                        ng-disabled="!createProspect.vm.isCoborrower[3]" ng-model="createProspect.vm.prospects[3].lastName">
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+                        <label class="formLabel">Suffix</label>
+                        <div>
+                            <!--<ngt-dropdown class="dropdown" ng-disabled="!createProspect.vm.isCoborrower[3]" ng-model="createProspect.vm.prospects[3].suffixName"
+                            items="createProspect.masters.suffix" display-text="text" value="value"></ngt-dropdown>-->
+                            <ui-select ng-disabled="!createProspect.vm.isCoborrower[3]" ng-model="createProspect.vm.prospects[3].suffixName">
+                                <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                                <ui-select-choices repeat="d.value as d in createProspect.masters.suffix | filter: { text: $select.search }">
+                                    <span ng-bind-html="d.text | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row rowSpace">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Nickname</label>
+                        <input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]" ng-model="createProspect.vm.prospects[3].nickName">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+
+                        <label class="formLabel">Date of Birth</label>
+                        <div class="input-group">
+                            <input type="text" ng-disabled="true" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]" ng-model="createProspect.vm.prospects[3].dateOfBirth"
+                            ng-model-options="{allowInvalid: true}" si-datepicker="createProspect.prospectsDatePicker[3]"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row rowSpace">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Email</label>
+                        <input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]" ng-class="{'error' : createProspect.emailValidation(3, 'mail')}"
+                        ng-model="createProspect.vm.prospects[3].email">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Alternate Email</label>
+                        <input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]" ng-class="{'error' : createProspect.emailValidation(3, 'amail')}"
+                        ng-model="createProspect.vm.prospects[3].alternateEmail">
+                    </div>
+                </div>
+
+                <div class="row rowSpace">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Home Phone</label>
+                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]" ng-model="createProspect.vm.prospects[3].homePhone"
+                         name="homePhone3" ng-class="{'error' : !!createProspect.vm.prospects[3].homePhone && createProspect.vm.prospects[3].homePhone.length < 10 && prospectForm.homePhone3.$touched}">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Work Phone</label>
+                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]" ng-model="createProspect.vm.prospects[3].workPhone"
+                        name="workPhone3" ng-class="{'error' : !!createProspect.vm.prospects[3].workPhone && createProspect.vm.prospects[3].workPhone.length < 10 && prospectForm.workPhone3.$touched}">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Cell Phone</label>
+                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]" ng-model="createProspect.vm.prospects[3].cellPhone"
+                        name="cellPhone3" ng-class="{'error' : !!createProspect.vm.prospects[3].cellPhone && createProspect.vm.prospects[3].cellPhone.length < 10 && prospectForm.cellPhone3.$touched}">
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <p class="presntAdd">Present Address</p>
+                        <div class="clickToCopy"><span class="fa fa-copy copyIcn" ng-class="{'mouseNone': !createProspect.vm.isCoborrower[3] }" ng-click="createProspect.copyAddress(2, 3)"></span><span><small>Click to copy address from Applicant</small></span></div>
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                        <label class="formLabel">Street</label>
+                        <input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]" ng-model="createProspect.vm.prospects[3].streetAddress">
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <label class="formLabel">City</label>
+                        <input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]" ng-model="createProspect.vm.prospects[3].city">
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 formDropdown">
+                        <label class="formLabel">State</label>
+                        <div>
+                            <!--<ngt-dropdown class="dropdown" ng-disabled="!createProspect.vm.isCoborrower[3]" ng-model="createProspect.vm.prospects[3].state"
+                            items="createProspect.states" display-text="text" value="value"></ngt-dropdown>-->
+                            <ui-select ng-disabled="!createProspect.vm.isCoborrower[3]" ng-model="createProspect.vm.prospects[3].state">
+                                <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                                <ui-select-choices repeat="d.value as d in createProspect.states | filter: { text: $select.search }">
+                                    <span ng-bind-html="d.text | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">ZIP Code</label>
+                        <input type="text" maxlength="5" sa-allow-only="numbers" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]"
+                        ng-model="createProspect.vm.prospects[3].zip"
+                        name="zipcode3" ng-class="{'error': createProspect.vm.prospects[3].zip && createProspect.vm.prospects[3].zip.length < 5 && prospectForm.zipcode3.$touched}">
+                    </div>
+                </div>
+            </div>
+            <!---->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="row rowSpace">
+                    <div class="col-lg-12">
+                        <button type="button" class="btn btn-danger applicantDelete" ng-click="createProspect.onDeleteApplicant(3)">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row rowSpace applicant_cnp" ng-show="createProspect.applicantTwoShow">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 leftFrom mainApplicant_cnp">
+
+                <div class="row rowSpace">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <h3>Applicant</h3>
+                    </div>
+                </div>
+
+
+                <div class="row rowSpace">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">First Name*</label>
+                        <input type="text" class="formControl" name="prospects4fName" ng-class="{'error': prospectForm.prospects4fName.$touched && !createProspect.vm.prospects[4].firstName}"
+                        ng-model="createProspect.vm.prospects[4].firstName">
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Middle Name</label>
+                        <input type="text" class="formControl" ng-model="createProspect.vm.prospects[4].middleName">
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Last Name*</label>
+                        <input type="text" class="formControl" name="prospects4lName" ng-class="{'error': prospectForm.prospects4lName.$touched && !createProspect.vm.prospects[4].lastName}"
+                        ng-model="createProspect.vm.prospects[4].lastName">
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+                        <label class="formLabel">Suffix</label>
+                        <div>
+                            <!--<ngt-dropdown class="dropdown" ng-model="createProspect.vm.prospects[4].suffixName" items="createProspect.masters.suffix"
+                            display-text="text" value="value"></ngt-dropdown>-->
+                            <ui-select ng-model="createProspect.vm.prospects[4].suffixName">
+                                <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                                <ui-select-choices repeat="d.value as d in createProspect.masters.suffix | filter: { text: $select.search }">
+                                    <span ng-bind-html="d.text | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row rowSpace">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Nickname</label>
+                        <input type="text" class="formControl" ng-model="createProspect.vm.prospects[4].nickName">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+
+                        <label class="formLabel">Date of Birth</label>
+                        <div class="input-group">
+                            <input type="text" ng-disabled="true" class="formControl" ng-model="createProspect.vm.prospects[4].dateOfBirth" ng-model-options="{allowInvalid: true}"
+                            si-datepicker="createProspect.prospectsDatePicker[4]" />
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row rowSpace">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Email</label>
+                        <input type="text" class="formControl" ng-class="{'error' : createProspect.emailValidation(4, 'mail')}" ng-model="createProspect.vm.prospects[4].email">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Alternate Email</label>
+                        <input type="text" class="formControl" ng-class="{'error' : createProspect.emailValidation(4, 'amail')}" ng-model="createProspect.vm.prospects[4].alternateEmail"
+                         name="homePhone4" ng-class="{'error' : !!createProspect.vm.prospects[4].homePhone && createProspect.vm.prospects[4].homePhone.length < 10 && prospectForm.homePhone4.$touched}">
+                    </div>
+                </div>
+
+                <div class="row rowSpace">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Home Phone</label>
+                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-model="createProspect.vm.prospects[4].homePhone"
+                        name="homePhone4" ng-class="{'error' : !!createProspect.vm.prospects[4].homePhone && createProspect.vm.prospects[4].homePhone.length < 10 && prospectForm.homePhone4.$touched}">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Work Phone</label>
+                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-model="createProspect.vm.prospects[4].workPhone"
+                        name="workPhone4" ng-class="{'error' : !!createProspect.vm.prospects[4].workPhone && createProspect.vm.prospects[4].workPhone.length < 10 && prospectForm.workPhone4.$touched}">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Cell Phone</label>
+                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-model="createProspect.vm.prospects[4].cellPhone"
+                        name="cellPhone4" ng-class="{'error' : !!createProspect.vm.prospects[4].cellPhone && createProspect.vm.prospects[4].cellPhone.length < 10 && prospectForm.cellPhone4.$touched}">
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <p class="presntAdd">Present Address</p>
+                        <!--<div class="clickToCopy"><img src='client/assets/images/copy_icon.png'><span><small>Click to copy address from borrower</small></span></div>-->
+                        <div class="clickToCopy"><span class="fa fa-copy copyIcn" ng-click="createProspect.copyAddress(0, 4)"></span><span><small>Click to copy address from borrower</small></span></div>
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                        <label class="formLabel">Street</label>
+                        <input type="text" class="formControl" ng-model="createProspect.vm.prospects[4].streetAddress">
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <label class="formLabel">City</label>
+                        <input type="text" class="formControl" ng-model="createProspect.vm.prospects[4].city">
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 formDropdown">
+                        <label class="formLabel">State</label>
+                        <div>
+                            <!--<ngt-dropdown class="dropdown" ng-model="createProspect.vm.prospects[4].state" items="createProspect.states" display-text="text"
+                            value="value"></ngt-dropdown>-->
+                            <ui-select ng-model="createProspect.vm.prospects[4].state">
+                                <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                                <ui-select-choices repeat="d.value as d in createProspect.states | filter: { text: $select.search }">
+                                    <span ng-bind-html="d.text | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">ZIP Code</label>
+                        <input type="text" maxlength="5" sa-allow-only="numbers" class="formControl" ng-model="createProspect.vm.prospects[4].zip"
+                        name="zipcode4" ng-class="{'error': createProspect.vm.prospects[4].zip && createProspect.vm.prospects[4].zip.length < 5 && prospectForm.zipcode4.$touched}">
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 rightFrom coApplicant_cnp" ng-class="{'formInactive': !createProspect.vm.isCoborrower[5]}">
+                <div class="row rowSpace">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <input type="checkbox" id="coApplicnt2" ng-click="createProspect.clearCoBorrower(5)" ng-model="createProspect.vm.isCoborrower[5]"
+                        />
+                        <label for="coApplicnt2" class="coApplicnt">co-applicant</label>
+                    </div>
+                </div>
+
+
+                <div class="row rowSpace">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">First Name*</label>
+                        <input type="text" class="formControl" name="prospects5fName" ng-disabled="!createProspect.vm.isCoborrower[5]" ng-class="{'error': createProspect.vm.isCoborrower[5] && prospectForm.prospects5fName.$touched && !createProspect.vm.prospects[5].firstName}"
+                        ng-model="createProspect.vm.prospects[5].firstName">
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Middle Name</label>
+                        <input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[5]" ng-model="createProspect.vm.prospects[5].middleName">
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Last Name*</label>
+                        <input type="text" class="formControl" name="prospects5lName" ng-class="{'error': createProspect.vm.isCoborrower[5] && prospectForm.prospects5lName.$touched && !createProspect.vm.prospects[5].lastName}"
+                        ng-disabled="!createProspect.vm.isCoborrower[5]" ng-model="createProspect.vm.prospects[5].lastName">
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+                        <label class="formLabel">Suffix</label>
+                        <div>
+                            <!--<ngt-dropdown class="dropdown" ng-disabled="!createProspect.vm.isCoborrower[5]" ng-model="createProspect.vm.prospects[5].suffixName"
+                            items="createProspect.masters.suffix" display-text="text" value="value"></ngt-dropdown>-->
+                            <ui-select ng-disabled="!createProspect.vm.isCoborrower[5]" ng-model="createProspect.vm.prospects[5].suffixName">
+                                <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                                <ui-select-choices repeat="d.value as d in createProspect.masters.suffix | filter: { text: $select.search }">
+                                    <span ng-bind-html="d.text | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row rowSpace">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Nickname</label>
+                        <input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[5]" ng-model="createProspect.vm.prospects[5].nickName">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+
+                        <label class="formLabel">Date of Birth</label>
+                        <div class="input-group">
+                            <input type="text" ng-disabled="true" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[5]" ng-model="createProspect.vm.prospects[5].dateOfBirth"
+                            ng-model-options="{allowInvalid: true}" si-datepicker="createProspect.prospectsDatePicker[5]"
+                            />
+
+                            <!--<input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]" ng-model="createProspect.vm.prospects[3].dateOfBirth" ng-model-options="{allowInvalid: true}"
+                    si-datepicker="createProspect.prospectsDatePicker[3]" />-->
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="row rowSpace">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Email</label>
+                        <input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[5]" ng-class="{'error' : createProspect.emailValidation(5, 'mail')}"
+                        ng-model="createProspect.vm.prospects[5].email">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Alternate Email</label>
+                        <input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[5]" ng-class="{'error' : createProspect.emailValidation(5, 'amail')}"
+                        ng-model="createProspect.vm.prospects[5].alternateEmail">
+                    </div>
+                </div>
+
+                <div class="row rowSpace">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Home Phone</label>
+                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-disabled="!createProspect.vm.isCoborrower[5]" ng-model="createProspect.vm.prospects[5].homePhone"
+                         name="homePhone5" ng-class="{'error' : !!createProspect.vm.prospects[5].homePhone && createProspect.vm.prospects[5].homePhone.length < 10 && prospectForm.homePhone5.$touched}">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Work Phone</label>
+                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-disabled="!createProspect.vm.isCoborrower[5]" ng-model="createProspect.vm.prospects[5].workPhone"
+                        name="workPhone5" ng-class="{'error' : !!createProspect.vm.prospects[5].workPhone && createProspect.vm.prospects[5].workPhone.length < 10 && prospectForm.workPhone5.$touched}">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">Cell Phone</label>
+                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-disabled="!createProspect.vm.isCoborrower[5]" ng-model="createProspect.vm.prospects[5].cellPhone"
+                        name="cellPhone5" ng-class="{'error' : !!createProspect.vm.prospects[5].cellPhone && createProspect.vm.prospects[5].cellPhone.length < 10 && prospectForm.cellPhone5.$touched}">
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <p class="presntAdd">Present Address</p>
+                        <div class="clickToCopy"><span class="fa fa-copy copyIcn" ng-class="{'mouseNone': !createProspect.vm.isCoborrower[5] }" ng-click="createProspect.copyAddress(4, 5)"></span><span><small>Click to copy address from Applicant</small></span></div>
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                        <label class="formLabel">Street</label>
+                        <input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[5]" ng-model="createProspect.vm.prospects[5].streetAddress">
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <label class="formLabel">City</label>
+                        <input type="text" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[5]" ng-model="createProspect.vm.prospects[5].city">
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 formDropdown">
+                        <label class="formLabel">State</label>
+                        <div>
+                            <!--<ngt-dropdown class="dropdown" ng-disabled="!createProspect.vm.isCoborrower[5]" ng-model="createProspect.vm.prospects[5].state"
+                            items="createProspect.states" display-text="text" value="value"></ngt-dropdown>-->
+                            <ui-select ng-disabled="!createProspect.vm.isCoborrower[5]" ng-model="createProspect.vm.prospects[5].state">
+                                <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                                <ui-select-choices repeat="d.value as d in createProspect.states | filter: { text: $select.search }">
+                                    <span ng-bind-html="d.text | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <label class="formLabel">ZIP Code</label>
+                        <input type="text" maxlength="5" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[5]" ng-model="createProspect.vm.prospects[5].zip"
+                        name="zipcode5" ng-class="{'error': createProspect.vm.prospects[5].zip && createProspect.vm.prospects[5].zip.length < 5 && prospectForm.zipcode5.$touched}">
+                    </div>
+                </div>
+            </div>
+            <!---->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="row rowSpace">
+                    <div class="col-lg-12">
+                        <button type="button" class="btn btn-danger applicantDelete" ng-click="createProspect.onDeleteApplicant(5)">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row rowSpace" ng-hide="createProspect.applicantOneShow && createProspect.applicantTwoShow">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <a class="addApplcnt" ng-show="!createProspect.applicantTwoShow && !createProspect.applicantOneShow" ng-class="{'mouseNone': createProspect.applicantOneShow && createProspect.applicantTwoShow }"
+                ng-disabled="createProspect.applicantOneShow && createProspect.applicantTwoShow" ng-click="createProspect.addApplicant()">+ Add Applicant</a>
+                <a class="addApplcnt" ng-show="createProspect.applicantTwoShow || createProspect.applicantOneShow" ng-class="{'mouseNone': createProspect.applicantOneShow && createProspect.applicantTwoShow }"
+                ng-disabled="createProspect.applicantOneShow && createProspect.applicantTwoShow" ng-click="createProspect.addApplicant()">+ Add Another Applicant</a>
+            </div>
+        </div>
+
+
+        <div class="row lastPanel_cnp">
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 finalFrom">
+
+                <div class="row rowSpace">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <p>Purpose of the Loan ?</p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <input type="radio" id="purchase" name="pr" value="Purchase" ng-model="createProspect.vm.loanPurpose" ng-click="createProspect.onPurposeSelect('Purchase')"
+                        />
+                        <label for="purchase" class="loanLabel">Purchase</label>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <input type="radio" id="refinance" name="pr" value="Refinance" ng-model="createProspect.vm.loanPurpose" ng-click="createProspect.onPurposeSelect('Refinance')"
+                        />
+                        <label for="refinance" class="loanLabel">Refinance</label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <input type="checkbox" id="homeBuyer" ng-disabled="createProspect.vm.loanPurpose === 'Refinance'" ng-model="createProspect.vm.firstTimeHomeBuyer"
+                        />
+                        <label for="homeBuyer" class="loanLabel">Are you a first-time home buyer?</label>
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <label class="formLabel">Occupancy Type</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 formDropdown">
+
+                        <div>
+                            <!--<ngt-dropdown class="dropdown" ng-model="createProspect.vm.occupancyType" items="createProspect.masters.occupancyType" display-text="text"
+                        value="value"></ngt-dropdown>-->
+                            <ui-select ng-model="createProspect.vm.occupancyType">
+                                <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                                <ui-select-choices repeat="d.value as d in createProspect.masters.occupancyType | filter: { text: $select.search }">
+                                    <span ng-bind-html="d.text | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row rowSpace">
+
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+
+                        <label class="formLabel">Lead Received Date</label>
+                        <div class="input-group">
+                            <div class="input-group">
+                                <input type="text" ng-disabled="true" class="formControl" ng-model="createProspect.vm.leadReceivedDate" ng-model-options="{allowInvalid: true}"
+                                si-datepicker="createProspect.leadReceivedDatePicker" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 formDropdown">
+                        <label class="formLabel">Lead Source</label>
+                        <div>
+                            <!--<ngt-dropdown class="dropdown" ng-model="createProspect.vm.leadSource" items="createProspect.leadSource" display-text="text"
+                            value="value"></ngt-dropdown>-->
+                            <ui-select ng-model="createProspect.vm.leadSource">
+                                <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                                <ui-select-choices repeat="d.value as d in createProspect.leadSource | filter: { text: $select.search }">
+                                    <span ng-bind-html="d.text | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+                        <label class="formLabel">Lead Name</label>
+                        <input type="text" class="formControl" ng-model="createProspect.vm.leadName">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 formDropdown">
+                        <label class="formLabel">Initial Campaign</label>
+                        <div>
+                            <!--<ngt-dropdown class="dropdown" ng-model="createProspect.vm.initialCampaignType" items="createProspect.campaignType" display-text="text"
+                            value="value"></ngt-dropdown>-->
+                            <ui-select ng-model="createProspect.vm.initialCampaignType">
+                                <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                                <ui-select-choices repeat="d.value as d in createProspect.campaignType | filter: { text: $select.search }">
+                                    <span ng-bind-html="d.text | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row rowSpace">
+                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 formDropdown">
+                        <label class="formLabel">How did you hear about us?</label>
+                        <input type="text" class="formControl" ng-model="createProspect.vm.howProspectHeardAboutUs">
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+
+                        <label class="formLabel">Next Time to Contact</label>
+                        <div class="input-group">
+                            <input type="text" ng-disabled="true" class="formControl" ng-model="createProspect.vm.prospects[0].nextDateToContact" ng-model-options="{allowInvalid: true}"
+                            si-datepicker="createProspect.nextToTimeDatePicker" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label class="formLabel fLeft">Note</label>
+                        <span class='maxCharInfo'><small>Maximum characters allowed 500</span></span>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <textarea class="formControl" maxlength="500" ng-model="createProspect.vm.note"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="row moveToHistoryContainer">
+                            <button type="button" class="btn btn-default moveToHistory" ng-click="createProspect.onClickMoveHistory()">Add to Notes</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 noteHistory">
+                <!--<p class="noteHistoryTitle">Note History</p>
+            <ul class="noteHistoryContainer">
+                <li class="noteHistoryRecord" ng-repeat="history in createProspect.vm.notes">
+                    <p class="noteHistoryDate"> {{history}}</p>
+                 </li>
+            </ul>-->
+
+
+                <p class="noteHistoryTitle">Note History</p>
+                <ul class="noteHistoryContainer">
+                    <li class="noteHistoryRecord" ng-repeat="history in createProspect.vm.noteHistory">
+                        <p class="noteHistoryDate"> {{history.date}}</p>
+                        <p class="noteHistoryContent"> {{history.content}}</p>
+                    </li>
+                </ul>
+
+
+            </div>
+
+        </div>
+    </div>
+    <div class="row rowSpace">
+
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 bottomMostButtons">
+            <button type="button" class="btn btn-success" ng-click="createProspect.onSuccessClick()">Save</button>
+            <button type="button" class="btn btn-success" ng-disabled="true">Convert to Full App</button>
+            <button type="button" class="btn btn-success" ng-disabled="true">Push to Loyalty Express</button>
+        </div>
+    </div>
+    </div>
+    </div>
+</ng-form>

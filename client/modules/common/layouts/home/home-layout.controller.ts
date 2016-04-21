@@ -3,12 +3,12 @@
 
 namespace common.layouts.home {
     /* @ngInject */
-    export class LayoutHomeController extends ngTemplate.core.bases.LayoutController<shell.ShellController> {
+    export class HomeLayoutController extends ngTemplate.core.bases.LayoutController<shell.ShellController> {
         constructor($scope: ngTemplate.core.bases.ILayoutControllerScope<shell.ShellController>) {
             super($scope);
         }
     }
 
     export const homeRoute: IPageState = createLayoutRoute('homeLayout', 'layouts/home/home-layout.html');
-    registerController(LayoutHomeController, homeRoute);
+    registerController(HomeLayoutController, homeRoute);
 }

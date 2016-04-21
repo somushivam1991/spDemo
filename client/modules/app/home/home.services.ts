@@ -10,8 +10,15 @@ namespace app.home {
 
         public createViewModel(): ViewModel {
             return {
-                username: undefined,
-                password: undefined
+                login: {
+                    username: undefined,
+                    password: undefined
+                },
+                error: {
+                    usernameRequired: false,
+                    passwordRequired: false,
+                    invalidCredential: false
+                }
             };
         }
     }

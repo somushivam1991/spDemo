@@ -1,0 +1,39 @@
+<div id="prospect" class="tab-pane fade active in">
+    <div class="row topButtons_dprosTab">
+        <div class="col-lg-7 col-md-6 col-sm-3 col-xs-12"></div>
+        <!--Views Dropdown List-->
+        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+            <div class="dropdown pull-right">
+                <select class="form-control prosDropDown" aria-placeholder="select" style="width:100%" ng-options="col as col.text for col in prospectTab.masters.prospectView"
+                ng-model="prospectTab.vm.prospectSource.name" ng-change="prospectTab.onChangeClick()">
+                </select>
+                <!--<select class="form-control" aria-placeholder="select" style="width:150px" ng-options="col as col.text for col in prospectTab.masters.prospectView"
+                  ng-model="prospectTab.vm.prospectSource.name">-->
+            </div>
+        </div>
+
+        <form>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
+                <input class=" searchControl_dProsTab pull-right" ng-model="prospectTab.vm.filter.searchCriteria.lastName" placeholder="Search by last name"
+                type="search">
+            </div>
+
+            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3">
+                <button class="btn btn-success" type="submit" ng-click="prospectTab.onGoClick()">Go</button>
+            </div>
+        </form>
+    </div>
+
+
+    <!--Prospect tab-->
+    <div class='row'>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="prospect-table-container">
+                <div class="ui-grid-table">
+                    <div ui-grid="prospectTab.prospectGrid" ui-grid-selection ui-grid-pagination class="stripe-table marB5 prospectGridDynamicHeightGrid">
+                        <span class="grid-error-msg" ng-show="prospectTab.prospectGrid.data.length === 0">No Records Found</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

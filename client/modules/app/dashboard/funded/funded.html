@@ -1,0 +1,66 @@
+<div id="funded" class="fade in active">
+
+    <div class='row zeroRowDash'>
+        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+            <span class='dashCurrentUser'>You are currently viewing <span>{{fundedTab.fundedHeader}}</span>'s Pipeline </span>
+        </div>
+    </div>
+    <div class="row firstRowDash">
+
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pull-right smallMarginTopBottom">
+            <form>
+                <button type="submit" tabindex="2" class="btn btn-success centered pull-right" ng-click="fundedTab.onGoClick()">Go</button>
+                <input type="search" tabindex="1" class="searchControl pull-right" placeholder="Search by last name/loan number" ng-model="fundedTab.vm.search.fundedLastName">
+            </form>
+
+        </div>
+
+        <div class="col-lg-3 col-lg-push-5 col-md-6 col-sm-12  col-xs-12 smallMarginTopBottom">
+
+            <!--<select class="form-control viewDropDown" aria-placeholder="select" ng-options="col as col.text for col in fundedTab.fundedViews"
+            ng-model="fundedTab.vm.search.fundedView" ng-change="fundedTab.onViewChange()">
+            </select>-->
+
+            <div class="viewDropDown">
+                <!--<ngt-dropdown class="dropdown" ng-model="fundedTab.vm.search.fundedView" items="fundedTab.fundedViews" display-text="text"
+                value="value" ng-change="fundedTab.onViewChange()"></ngt-dropdown>-->
+                 <ui-select ng-model="fundedTab.vm.search.fundedView" ng-change="fundedTab.onViewChange()">
+                    <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                    <ui-select-choices repeat="d.value as d in fundedTab.fundedViews | filter: { text: $select.search }">
+                        <span ng-bind-html="d.text | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+
+        </div>
+
+        <div class="col-lg-5 col-lg-pull-3 col-md-12 col-sm-12 col-xs-12 pull-left smallMarginTopBottom expandBtnHolder">
+            <div class='expand_btn_dPipe pull-left' ng-click="fundedTab.onExpandClick()" ng-show="fundedTab.vm.isFundedShowAlert">Expand &nbsp;&nbsp;<span><sup><img src="../images/expand.png"  alt="expand icon"></sup></span></div>
+            <div class='expand_btn_dPipe pull-left' ng-click="fundedTab.onCollapseClick()" ng-hide="fundedTab.vm.isFundedShowAlert">Collapse &nbsp;&nbsp;<span class="fa fa-minus"></span></div>
+            
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="pipeline-table-container">
+                <div class="ui-grid-table">
+                    <div ui-grid="fundedTab.fundedGrid" ui-grid-pagination class="stripe-table marB5 pipelineGridDynamicHeightGrid">
+                        <span class="grid-error-msg" ng-show="fundedTab.fundedGrid.data.length === 0">No Records Found</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<hr>
+<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 padLeftDiv divideRow" ng-show="fundedTab.vm.isFundedShowAlert">
+    <label class='alertsTitle'>ALERTS</label>
+    <div class="ui-grid-table">
+
+        <div ui-grid="fundedTab.fundedAlert" class="stripe-table marB5 fundedAlertDynamicHeightGrid">
+            <span class="grid-error-msg" ng-show="fundedTab.fundedAlert.data.length === 0">No Alert Messages to be displayed</span>
+
+        </div>
+    </div>
+</div>

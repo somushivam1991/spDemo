@@ -1,0 +1,211 @@
+<div class='wrapper'>
+    <header>
+
+        <div class="row main-row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 ">
+                <div class="logo margLogoTop" ui-sref="dashboard.pipelineTab"></div>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-6 margMenuTop">
+                <nav class="navbar navbar-inverse pull-right">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li ui-sref-active="active"><a ui-sref="dashboard.pipelineTab" title="Home">Dashboard</a></li>
+                            <li class="reporting"><a href="#">Reporting</a></li>
+                            <li class="search"><a href="#">Search</a></li>
+                            <li class="resources">
+                                <div class="dropdown dropdownBorder">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                        Resources
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Change Password</a></li>
+                                        <li><a href="#">CSS</a></li>
+                                        <li><a href="#">JavaScript</a></li>
+                                    </ul>
+                                </div>
+
+                            </li>
+                            <li class="messageLi">
+                                <a>
+                                    <div class="message">
+                                        <span class="msgCount">7</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="user-name userNameHeader">
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                        {{layout.username}}
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu topRightDropDown">
+                                        <li><a href="#" ng-click="layout.onChangePasswordClick()">Change Password</a></li>
+                                        <li><a href="#" ng-click="layout.onLogoffClick()">Sign Out</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 visible-xs">
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li ui-sref-active="active"><a ui-sref="dashboard.pipelineTab" title="Home">Dashboard</a></li>
+                        <li class="reporting"><a href="#">Reporting</a></li>
+                        <li class="search"><a href="#">Search</a></li>
+                        <li class="admin"><a href="#">Admin</a></li>
+                        <li class="resources">
+                            <div class="dropdown dropdownBorder">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                    Resources
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">HTML</a></li>
+                                    <li><a href="#">CSS</a></li>
+                                    <li><a href="#">JavaScript</a></li>
+                                </ul>
+                            </div>
+
+                        </li>
+                        <li class="">
+                            <div class="message">
+                                <span class="msgCount">7</span>
+                            </div>
+                        </li>
+                        <li class="user-name">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                    John Smith
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">HTML</a></li>
+                                    <li><a href="#">CSS</a></li>
+                                    <li><a href="#">JavaScript</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="section container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  mainAppContainer">
+                <ul class="mainAppLeftMenucontainer">
+                    <li class="mainApp1003Btn active"><span>1003</span></li>
+                    <li class="mainAppCreditReportBtn"><span>Credit Report</span></li>
+                    <li class="mainAppProductPricingBtn"><span>Product and Pricing</span></li>
+                    <li class="mainAppFeesBtn"><span>Fees</span></li>
+                    <li class="mainAppAUSBtn"><span>AUS</span></li>
+                    <li class="mainAppAppraisalBtn"><span>Appraisal</span></li>
+                    <li class="mainAppTitleBtn"><span>Title</span></li>
+                    <li class="mainAppGenerateLEBtn"><span>Generate LE</span></li>
+                    <li class="mainAppUploadDocBtn"><span>Upload Documents</span></li>
+                    <li class="mainAppConditionsBtn"><span>Conditions</span></li>
+                </ul>
+
+                <div class="subMenuHolder collapsed">
+                    <div class="dropdown">
+                        <button class="btn btn-primary transBtn dropdown-toggle" type="button" data-toggle="dropdown">
+                            John Smith
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">HTML</a></li>
+                            <li><a href="#">CSS</a></li>
+                            <li><a href="#">JavaScript</a></li>
+                        </ul>
+                    </div>
+                    <ul class="subMenuContainer">
+                        <li class="subMenuLoanPropInfoBtn fullComplete"><i><span><a ui-sref="loan.info({loanNumber: 123456789})">Loan & Property Info.</a></span></i></li>
+                        <li class="subMenuBorrowerInfoBtn yetToStart"><i><span><a ui-sref="loan.borrower({loanNumber: 123456789})">Borrower Information</a></span></i></li>
+                        <li class="subMenuEmpIncomeBtn yetToStart"><i><span><a ui-sref="loan.employment({loanNumber: 123456789})">Employment / Income</a></span></i></li>
+                        <li class="subMenuAssetsBtn yetToStart"><i><span><a ui-sref="loan.assert({loanNumber: 123456789})">Assets</a></span></i></li>
+                        <li class="subMenuLiabilitiesBtn semiCompelte"><i><span><a ui-sref="loan.liabilities({loanNumber: 123456789})">Liabilities</a></span></i></li>
+                        <li class="subMenuREOBtn semiCompelte"><i><span><a ui-sref="loan.REO({loanNumber: 123456789})">Schedule of REO</a></span></i></li>
+                        <li class="subMenuTransacDetailsBtn semiCompelte"><i><span><a ui-sref="loan.transactions({loanNumber: 123456789})">Details of Transactions</a></span></i></li>
+                        <li class="subMenuDeclarationsBtn semiCompelte"><i><span><a ui-sref="loan.declarations({loanNumber: 123456789})">Declarations</a></span></i></li>
+                        <li class="subMenuAcknwGovtBtn yetToStart"><i><span><a ui-sref="loan.governmentMonitoring({loanNumber: 123456789})">Acknowledgement & Government Monitoring</a></span></i></li>
+                    </ul>
+                </div>
+                <div class='mainAppRightPanel'>
+                    <div class="row w100">
+                        <div ui-view class="col-lg-12 rightPanelInnercontainer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function initMainApp(){
+    
+    var collapsableMenu = document.querySelector('.subMenuHolder ');
+    collapsableMenu.addEventListener('click',function(){
+        
+        $(collapsableMenu).removeClass('collapsed');
+    })
+    
+    var mainAppRightPanel = document.querySelector('.mainAppRightPanel');
+    mainAppRightPanel.addEventListener('click',function(){
+        
+        $(collapsableMenu).addClass('collapsed');
+        
+        
+    });
+    
+    
+}
+
+initMainApp();
+    
+    function checkForWhiteSpace(contentElt){
+    this.windowHeightVal;
+    this.contentHeightVal;
+    this.headerHeightVal;
+    this.footerHeightVal;
+    this.contentElement = contentElt;
+    this.totalHeight;
+        
+    this.init();   
+        
+    }
+
+
+
+    checkForWhiteSpace.prototype.init = function(){
+        var thisObj = this;
+        
+        
+        this.windowHeightVal = $(window).height();
+        this.headerHeightVal = $("header").height();
+        this.footerHeightVal = $("footer").height();
+        this.contentHeightVal = $(thisObj.contentElement).height();
+        
+        this.totalHeight = this.headerHeightVal+this.footerHeightVal+this.contentHeightVal;
+        
+        if(this.totalHeight < this.windowHeightVal){
+           this.contentElement.style.height = this.windowHeightVal - this.headerHeightVal - this.footerHeightVal +"px";
+            //alert("this.totalHeight = "+this.totalHeight+"this.windowHeightVal ="+this.windowHeightVal);
+        }
+        
+
+    }
+
+</script>
+<!--Header Ends -->

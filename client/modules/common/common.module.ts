@@ -16,6 +16,11 @@ namespace common {
         'ngStorage'
     ]);
 
+    export interface ICatchException {
+        code: string;
+        Message: string;
+    }
+
     export function registerController(
         controllerConstructor: Function,
         route: IPageState,

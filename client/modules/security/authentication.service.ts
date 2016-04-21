@@ -1,7 +1,7 @@
 /// <reference path="../../../typings/lib.d.ts" />
 /// <reference path="../../../typings/app.d.ts" />
 
-namespace security.baseState {
+namespace security {
 
     export class BaseState {
         private _storage: any = {};
@@ -10,10 +10,10 @@ namespace security.baseState {
         constructor(private $localStorage: ngStorage.ILocalStorage,
                     private $sessionStorage: ngStorage.ISessionStorage,
                     storage: StorageDescriptor[]) {
-            (storage || []).forEach((descriptor: StorageDescriptor) => {
-                this._storage[descriptor.name] = { type: descriptor.type };
-            });
-            this.initialize();
+                    (storage || []).forEach((descriptor: StorageDescriptor) => {
+                        this._storage[descriptor.name] = { type: descriptor.type };
+                    });
+                    this.initialize();
         }
 
         /**

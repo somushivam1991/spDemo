@@ -1,13 +1,13 @@
 {
     "local": {
         "config": {
-            "apiBaseUrl": "http://localhost/spm.services/"
+            "apiBaseUrl": "http://localhost/spm.services"
         }
     },
-
+    
     "dev": {
         "config": {
-            "apiBaseUrl": "http://dev-server/api/"
+            "apiBaseUrl": "http://sierra-server/SierraPacific.Api"
         }
     },
     
@@ -16,7 +16,16 @@
             "apiBaseUrl": "http://qa-server/api/"
         }
     },
-
+    "soumya":{
+        "config":{
+            "apiBaseUrl":"http://10.129.165.138/spm.services"
+        }
+    },
+    "shivam":{
+        "config":{
+            "apiBaseUrl":"http://10.129.155.208/spm.services"
+        }
+    },
     "uat": {
         "config": {
             "apiBaseUrl": "http://uat-server/api/"

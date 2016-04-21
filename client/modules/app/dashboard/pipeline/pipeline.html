@@ -1,0 +1,62 @@
+<div id="pipeline" class="fade in active">
+    <!--<div>
+         <span>You are currently viewing <span>{{pipelineTab.pipelineHeader}}</span>'s Pipeline
+        </div>-->
+    <div class='row zeroRowDash'>
+        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+            <span class='dashCurrentUser'>You are currently viewing <span>{{pipelineTab.pipelineHeader}}</span>'s Pipeline
+            </span>
+        </div>
+    </div>
+    <div class="row firstRowDash">
+        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 pull-right smallMarginTopBottom">
+            <form>
+                <button type="submit" tabindex="2" class="btn btn-success pull-right" ng-click="pipelineTab.onGoClick()">Go</button>
+                <input type="search" tabindex="1" class="searchControl pull-right" placeholder="Search by last name/loan number" ng-model="pipelineTab.vm.search.pipelineLastName">
+            </form>
+        </div>
+        <div class="col-lg-3 col-lg-push-5 col-md-6 col-sm-12  col-xs-12 smallMarginTopBottom">
+            <!--<select class="form-control viewDropDown" aria-placeholder="select" ng-options="col as col.text for col in pipelineTab.pipelineViews"
+            ng-model="pipelineTab.vm.search.pipelineView" ng-change="pipelineTab.onViewChange()">
+            </select>-->
+            <div class="viewDropDown">
+                <!--<ngt-dropdown class="dropdown" ng-model="pipelineTab.vm.search.pipelineView" items="pipelineTab.pipelineViews" display-text="text"
+                value="value" ng-change="pipelineTab.onViewChange()"></ngt-dropdown>-->
+
+
+                <ui-select ng-model="pipelineTab.vm.search.pipelineView" ng-change="pipelineTab.onViewChange()">
+                    <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                    <ui-select-choices repeat="d.value as d in pipelineTab.pipelineViews | filter: { text: $select.search }">
+                        <span ng-bind-html="d.text | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+
+            </div>
+        </div>
+
+
+        <div class="col-lg-5 col-lg-pull-3 col-md-12 col-sm-12 col-xs-12 pull-left smallMarginTopBottom expandBtnHolder">
+
+            <div class='expand_btn_dPipe pull-left' ng-click="pipelineTab.onExpandClick()" ng-show="pipelineTab.vm.isPipelineShowAlert">Expand &nbsp;&nbsp;&nbsp;&nbsp;<span><sup><img src="../images/expand.png" alt="expand icon"></sup></span></div>
+            <div class='expand_btn_dPipe pull-left' ng-click="pipelineTab.onCollapseClick()" ng-hide="pipelineTab.vm.isPipelineShowAlert">Collapse &nbsp;&nbsp;<span class="fa fa-minus"></span></div>
+
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="pipeline-table-container">
+                <div class="ui-grid-table">
+                    <span class="grid-error-msg" ng-show="pipelineTab.pipelineGrid.data.length === 0">No Records Found</span>
+                    <div ui-grid="pipelineTab.pipelineGrid" ui-grid-pagination class="stripe-table marB5 pipelineGridDynamicHeightGrid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 padLeftDiv divideRow" ng-show="pipelineTab.vm.isPipelineShowAlert">
+    <label class='alertsTitle'>ALERTS</label>
+    <div class="ui-grid-table">
+        <span class="grid-error-msg" ng-show="pipelineTab.pipelineAlert.data.length === 0">No Alert Messages to be displayed</span>
+        <div ui-grid="pipelineTab.pipelineAlert" class="stripe-table marB5 pipelineAlertDynamicHeightGrid"></div>
+    </div>
+</div>

@@ -1,16 +1,59 @@
-<div>
-    <button id="btnProspects" name="Prospect" ng-click="dashboard.initializeDashBoardGrid();" > Prospect </button>
-    <button id="btnProspectClear" name="Prospect" ng-click="dashboard.clrDashBoardGrid();" > Clear Prospect </button>
-</div>
-
-<div ui-grid="dashboard.dashBoardGrid" id="grid1" ui-grid-edit ui-grid-exporter ui-grid-selection ui-grid-pagination class="user-profile-table">
-
-</div>
-
-<div ng-click="dashboard.showAgeModal();"> {{dashboard.ageList}}
-     Click
-</div>
-
-<div ng-repeat="age in dashboard.ageList">
-    {{age}}
+<div class='boardInnerContainer'>
+    <div class="fullScreenLoader" ng-show="dashboard.isBusy">
+        <div class="spinner"></div>
     </div>
+    <ul class="nav nav-tabs">
+        <li ui-sref-active="active"><a aria-expanded="true" data-toggle="tab" ui-sref="dashboard.pipelineTab">PIPELINE</a></li>
+        <li ui-sref-active="active"><a aria-expanded="false" data-toggle="tab" ui-sref="dashboard.fundedTab">FUNDED</a></li>
+        <li ui-sref-active="active"><a aria-expanded="false" data-toggle="tab" ui-sref="dashboard.prospectTab">PROSPECT</a></li>
+    </ul>
+    <div ui-view="tabContent"></div>
+
+</div>
+<script>
+    $(document).ready(function () {
+            //alert(window.location.href);
+            var navAddress = window.location.href;
+            var currentPge = navAddress.split('/')[3];
+           
+           // alert(currentPge);
+            if(currentPge=="")
+            setMainContentSize();
+        });
+
+         $(window).resize(function () {
+             
+            var navAddress = window.location.href;
+            var currentPge = navAddress.split('/')[3];
+           
+           // alert(currentPge);
+             if(currentPge=="dashboard")
+             setMainContentSize();
+         });
+        function setMainContentSize(){
+            //alert('im executed');
+            var headerHeight =  $("header").height();
+            var footerHeight = $("footer").height();
+            var windowHeight = $(window).height();
+            var contentHeight; 
+            //console.log("headerHeight ="+headerHeight+ " footerHeight =  "+footerHeight+"windowHeight = "+windowHeight);
+            if(windowHeight >767){
+                contentHeight= windowHeight - headerHeight - footerHeight; 
+                
+                var content = document.querySelector('.section');
+                content.style.minHeight = contentHeight+"px";
+            }
+            
+           /*
+            else{
+                
+                contentHeight= windowHeight - headerHeight; 
+                var content = document.querySelector('.section');
+                content.style.height = contentHeight+"px"; 
+                
+            }*/
+        }
+
+</script>
+
+

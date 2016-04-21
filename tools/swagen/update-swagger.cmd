@@ -4,10 +4,10 @@
 
      SET SwaggerUrl=%1
      IF "%SwaggerUrl%"=="" (
-         SET SwaggerUrl=http://localhost/SierraPacific.Api/swagger/docs/v1
+         SET SwaggerUrl=http://localhost/spm.services/swagger/docs/v1
      )
      IF "%SwaggerUrl%"=="""" (
-         SET SwaggerUrl=http://localhost/SierraPacific.Api/swagger/docs/v1
+         SET SwaggerUrl=http://localhost/spm.services/swagger/docs/v1
      )
 
      SET OutputFile=%2

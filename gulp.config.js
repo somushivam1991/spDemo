@@ -16,7 +16,9 @@ module.exports = function() {
     // Client folders
     const assetsFolder = clientFolder + 'assets/';
     const modulesFolder = clientFolder + 'modules/'
+    const commonFolder = clientFolder + 'modules/common/'
     const commonServiceFolder = modulesFolder + 'common/webservices/'
+    const securityFolder = clientFolder + 'modules/security/'
 
     // Output folders
     const buildFolder = rootFolder + '.build/';
@@ -69,7 +71,10 @@ module.exports = function() {
     const testJavascriptFiles = [].concat(
         bowerJsFiles,
         devBuildScriptsFolder + '**/*.module.js',
-        devBuildScriptsFolder + '**/*.services.js',
+        devBuildScriptsFolder + 'common/modals-base/*.js',
+        devBuildScriptsFolder + 'common/**/*.js',
+        devBuildScriptsFolder + '**/*.service.js',
+        devBuildScriptsFolder + 'app/**/*.js',
         devBuildScriptsFolder + '**/*.spec.js'
     )
     //Specify modules in increasing order of dependencies.
@@ -120,7 +125,11 @@ module.exports = function() {
                 `${bowerFolder}/roboto-fontface/css/roboto-fontface.css`,
                 `${bowerFolder}/bootstrap/dist/css/bootstrap.css`,
                 `${bowerFolder}/angular-ui-grid/ui-grid.css`,
-                 `${bowerFolder}/angular-toastr/dist/angular-toastr.css`,
+                `${bowerFolder}/angular-toastr/dist/angular-toastr.css`,
+                `${bowerFolder}/ui-select/dist/select.css`,
+                `${bowerFolder}/select2/dist/css/select2.css`,
+                `${bowerFolder}/selectize/dist/css/selectize.css`,
+                `${bowerFolder}/font-awesome/css/font-awesome.css`,
                 `${assetsFolder}css/styles.css`
             ],
 
@@ -199,6 +208,8 @@ module.exports = function() {
                     .filter(mod => mod.name !== sharedModule.name)
                     .reduce((files, mod) => files.concat(mod.tsToCompile || `${mod.folder}**/*.ts`), [])
                     .concat('!' + commonServiceFolder + 'sierra.services.ts')
+                    .concat('!' + modulesFolder + 'app/app.module.ts')
+                    .concat('!' + securityFolder + 'idleTimeOutService.ts')
             },
             {
                 description: 'Shared module script files',
@@ -231,11 +242,11 @@ module.exports = function() {
                 ignorePath: '..',
                 exclude: [],
                 overrides: {
-                  "angular": {
-                      "dependencies": {
-                          jquery:"^2.0.0"
-                      }
-                  }
+                    "angular": {
+                        "dependencies": {
+                            jquery: "^2.0.0"                            
+                        }
+                    }
                 }
             },
 
@@ -305,7 +316,17 @@ module.exports = function() {
             src: config.folders.assets + 'fonts/*',
             dest: cssParentFolder + 'fonts/',
             areImages: false
-        }
+        },
+        {
+            src: bowerFolder + 'angular-ui-grid/*.woff',
+            dest: cssParentFolder + 'css/',
+            areImages: false
+        },
+        {
+            src: bowerFolder + 'angular-ui-grid/*.ttf',
+            dest: cssParentFolder + 'css/',
+            areImages: false
+        }       
     ];
 
     /**
@@ -354,7 +375,7 @@ module.exports = function() {
                 `config/*.config.js`
             ],
 
-            opts.lessToCompile = opts.lessToCompile || [];
+                opts.lessToCompile = opts.lessToCompile || [];
             opts.lessToLint = opts.lessToLint || ['**/*.less'];
             opts.lessToWatch = opts.lessToWatch || ['**/*.ts'];
             opts.cssToCopy = opts.cssToCopy || [];

@@ -160,12 +160,12 @@ gulp.task(tsks.shell.copyTemplate, () => {
 
 function getModulePlaceholders() {
     return config.modules.reduce((ph, mod) =>
-        ph + `    <!-- build:js js/${mod.name}.js -->\n` +
-            `    <!-- inject:${mod.name}:js -->\n` +
-            `    <!-- endinject -->\n` +
-            `    <!-- inject:${mod.name}-templates:js -->\n` +
-            `    <!-- endinject -->\n` +
-            `    <!-- endbuild -->\n\n`, '');
+        ph + `    <!-- build:js js/${mod.name}.js -->\r\n` +
+            `    <!-- inject:${mod.name}:js -->\r\n` +
+            `    <!-- endinject -->\r\n` +
+            `    <!-- inject:${mod.name}-templates:js -->\r\n` +
+            `    <!-- endinject -->\r\n` +
+            `    <!-- endbuild -->\r\n\r\n`, '');
 }
 
 gulp.task(tsks.inject.vendor, () => {

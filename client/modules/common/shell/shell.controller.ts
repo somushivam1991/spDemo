@@ -7,6 +7,9 @@ namespace common.shell {
         constructor($injector: angular.auto.IInjectorService) {
             super($injector);
         }
+        public userName: string = undefined;
+        public userEmail: string = undefined;
+        public defaultPipeLineView: string = undefined;
     }
 
     commonModule.controller('shellController', ShellController);
