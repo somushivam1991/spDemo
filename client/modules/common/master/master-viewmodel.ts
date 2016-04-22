@@ -6,6 +6,14 @@ namespace app.masters.service {
         prospectView?: TextPair[];
         preferredContact?: TextPair[];
         occupancyType?: TextPair[];
+
+        //Loan and property Info master data
         lender?: TextPair[];
+        loanInfoNoOfMonths?: TextPair[];
+        loanInfoDocumentType?: TextPair[];
+        loanInfoNoOfUnits?: TextPair[];
+        loanInfoPropertyTypes?: TextPair[];
+        loanInfoTitleTypes?: TextPair[];
+        loanInfoTitleManner?: TextPair[];
     }
 }

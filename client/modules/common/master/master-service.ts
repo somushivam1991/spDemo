@@ -32,6 +32,40 @@ namespace app.masters.service {
             { text: 'Select', value: undefined },
             { text: 'SPM', value: 'SPM' },
             { text: 'Brokerred', value: 'Brokerred' }
+        ],
+        loanInfoNoOfMonths: [
+            { text: '360', value: '360' },
+            { text: '300', value: '300' },
+            { text: '240', value: '240' },
+            { text: '180', value: '180' },
+            { text: '120', value: '120' }
+        ],
+        loanInfoDocumentType: [
+            { text: 'Full Documentation', value: 'Full_Documentation' },
+            { text: 'Streamline with Appraisal', value: 'Streamline_with_Appraisal' },
+            { text: 'Streamline without Appraisal', value: 'Streamline_without_Appraisal' }
+        ],
+        loanInfoNoOfUnits: [
+            { text: 'Select', value: undefined },
+            { text: '1', value: '1' },
+            { text: '2', value: '2' },
+            { text: '3', value: '3' },
+            { text: '4', value: '4' }
+        ],
+        loanInfoPropertyTypes: [
+            { text: 'Select', value: undefined },
+            { text: 'Property 1', value: '1' },
+            { text: 'Property 2', value: '2' }
+        ],
+        loanInfoTitleTypes: [
+            { text: 'Select', value: undefined },
+            { text: 'Trust', value: 'Trust' },
+            { text: 'XYZ', value: 'XYZ' }
+        ],
+        loanInfoTitleManner: [
+            { text: 'Select', value: undefined },
+            { text: 'Separate', value: 'Separate' },
+            { text: 'XYZ', value: 'XYZ' }
         ]
     };
 

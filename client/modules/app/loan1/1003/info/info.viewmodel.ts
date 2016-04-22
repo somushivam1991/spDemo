@@ -1,5 +1,5 @@
-/// <reference path="../../../../../typings/lib.d.ts" />
-/// <reference path="../../../../../typings/app.d.ts" />
+/// <reference path="../../../../../../typings/lib.d.ts" />
+/// <reference path="../../../../../../typings/app.d.ts" />
 
 namespace app.loan.info {
     export interface ViewModel {
@@ -21,6 +21,7 @@ namespace app.loan.info {
         noOfMonths: number;
         programId: string;
         amortizationType: string;
+        amortizationTypeValue: string;
         mortgageInsuranceType: string;
         isImpounds: string;
         fhaCaseNumber: string;
@@ -35,7 +36,7 @@ namespace app.loan.info {
         city: string;
         legalDescription: string;
         state: string;
-        country: string;
+        county: string;
         zipCode: string;
         noOfUnits: number;
         yearBuilt: string;
@@ -44,6 +45,7 @@ namespace app.loan.info {
         contigencyRemovalDate: Date;
         propertyUsageType: string;
         title: PropertyInfoTitleVM;
+        sourceOfPayment: string;
     }
 
     export interface PropertyInfoTitleVM {

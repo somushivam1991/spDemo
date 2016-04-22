@@ -130,7 +130,8 @@ module.exports = function() {
                 `${bowerFolder}/select2/dist/css/select2.css`,
                 `${bowerFolder}/selectize/dist/css/selectize.css`,
                 `${bowerFolder}/font-awesome/css/font-awesome.css`,
-                `${assetsFolder}css/styles.css`
+                `${assetsFolder}css/styles.css`,
+               `${bowerFolder}/angular-ui-switch/angular-ui-switch.css`,
             ],
 
             //Application script files that must be injected before all other scripts (except bower scripts).

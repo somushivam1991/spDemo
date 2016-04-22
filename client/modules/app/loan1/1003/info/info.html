@@ -1,0 +1,384 @@
+<ng-form name="infoForm">
+
+    <div>Loan Information section </div>
+    <!--Start - form header section-->
+    <div>
+
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+            <label class="formLabel">Lender</label>
+            <div>
+                <ui-select ng-model="editInfo.vm.loanInfoHeader.lenderType">
+                    <ui-select-match placeholder="Select" allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                    <ui-select-choices repeat="d.value as d in editInfo.masters.lender | filter: { text: $select.search }">
+                        <span ng-bind-html="d.text | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+
+        <div>
+            <label>Application Date</label>
+            <span>{{editInfo.vm.loanInfoHeader.applicationdate}}</span>
+        </div>
+        <br/>
+        <div class="loanInfoForm loanInfoDummy">
+            <input type="checkbox" id="isBorrowerAssets" ng-model="editInfo.vm.loanInfoHeader.isBorrowerAssets" />
+            <span for="isBorrowerAssets">The Income / assets of a person other than the borrower will be used.</spanlabel>
+
+            <input type="checkbox" id="isCoBorrowerAssets" ng-model="editInfo.vm.loanInfoHeader.isCoBorrowerAssets" />
+            <span for="isCoBorrowerAssets">The Income / assets of a person other than the borrower will be used.</span>
+        </div>
+    </div>
+    <!-- Ends - form header section-->
+    <br/>
+    <hr/><br/>
+
+    <!--Start - Loan Info Section -->
+    <div class="row rowSpace">
+        <!--Start - Mortgage Applied For -->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <p>Mortgage Applied for:</p>
+
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="fanniemae" name="mortgageAppliedFor" value="Fannie Mae" ng-model="editInfo.vm.loanInfo.mortgageAppliedFor"
+                />
+                <label for="fanniemae">Fannie Mae</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="freddiemac" name="mortgageAppliedFor" value="Freddie Mac" ng-model="editInfo.vm.loanInfo.mortgageAppliedFor"
+                />
+                <label for="freddiemac">Freddie Mac</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="fha" name="mortgageAppliedFor" value="FHA" ng-model="editInfo.vm.loanInfo.mortgageAppliedFor" />
+                <label for="fha">FHA</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="VA" name="mortgageAppliedFor" value="V.A." ng-model="editInfo.vm.loanInfo.mortgageAppliedFor" />
+                <label for="VA">V.A.</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="USDA" name="mortgageAppliedFor" value="USDA" ng-model="editInfo.vm.loanInfo.mortgageAppliedFor" />
+                <label for="USDA">USDA</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="jumbo" name="mortgageAppliedFor" value="Jumbo" ng-model="editInfo.vm.loanInfo.mortgageAppliedFor"
+                />
+                <label for="jumbo">Jumbo</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="nonQM" name="mortgageAppliedFor" value="Non QM" ng-model="editInfo.vm.loanInfo.mortgageAppliedFor"
+                />
+                <label for="nonQM">Non QM</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="2nds" name="mortgageAppliedFor" value="2nds" ng-model="editInfo.vm.loanInfo.mortgageAppliedFor" />
+                <label for="2nds">2nds</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="bonds" name="mortgageAppliedFor" value="Bonds" ng-model="editInfo.vm.loanInfo.mortgageAppliedFor"
+                />
+                <label for="bonds">Bonds</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <label class="formLabel">State</label>
+                <div>
+                    <ui-select ng-model="editInfo.vm.loanInfo.state">
+                        <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                        <ui-select-choices repeat="d.value as d in editInfo.states | filter: { text: $select.search }">
+                            <span ng-bind-html="d.text | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <br/>
+            <p></p>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <label class="formLabel">No. of Months</label>
+                <div>
+                    <ui-select ng-model="editInfo.vm.loanInfo.noOfMonths">
+                        <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                        <ui-select-choices repeat="d.value as d in editInfo.masters.loanInfoNoOfMonths | filter: { text: $select.search }">
+                            <span ng-bind-html="d.text | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <label class="formLabel">Program ID: </label>
+                <div>
+                    <ui-select ng-model="editInfo.vm.loanInfo.programId">
+                        <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                        <!--<ui-select-choices repeat="d.value as d in undefined | filter: { text: $select.search }">
+                        <span ng-bind-html="d.text | highlight: $select.search"></span>
+                    </ui-select-choices>-->
+                    </ui-select>
+                </div>
+            </div>
+        </div>
+        <!--Ends - Mortgage Applied For -->
+
+        <!--Start - Amortization Type -->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <p>Amortization Type:</p>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="fixedrate" name="amortizationType" value="Fixed Rate" ng-model="editInfo.vm.loanInfo.amortizationType"
+                    ng-click="editInfo.onAmortizationChange()" />
+                <label for="fixedrate">Fixed Rate</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="arm" name="amortizationType" value="ARM" ng-model="editInfo.vm.loanInfo.amortizationType" ng-click="editInfo.onAmortizationChange()"
+                />
+                <label for="arm">ARM</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12" ng-show="editInfo.amortizationArmSelected">
+                <ui-select ng-model="editInfo.vm.loanInfo.amortizationTypeValue" ng-show="editInfo.amortizationArmSelected">
+                    <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                    <ui-select-choices repeat="d.value as d in editInfo.armTypes | filter: { text: $select.search }">
+                        <span ng-bind-html="d.text | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="gpm" name="amortizationType" value="GPM" ng-model="editInfo.vm.loanInfo.amortizationType" ng-click="editInfo.onAmortizationChange()"
+                />
+                <label for="fha">GPM</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="other" name="amortizationType" value="Other" ng-model="editInfo.vm.loanInfo.amortizationType" ng-click="editInfo.onAmortizationChange()"
+                />
+                <label for="other">Other (explain)</label>
+                <input type="text" ng-model="editInfo.vm.loanInfo.amortizationTypeValue" ng-show="editInfo.amortizationOtherSelected" />
+            </div>
+
+        </div>
+        <!--Ends - Amortization Type -->
+
+        <!--Start Mortgage Insurance-->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <p>Mortgage Insurance:</p>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="lenderPaidMi" name="mortgageInsuranceType" value="Lender Paid MI" ng-model="editInfo.vm.loanInfo.mortgageInsuranceType"
+                />
+                <label for="lenderPaidMi">Lender Paid MI</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="borrowerPaid" name="mortgageInsuranceType" value="Borrower Paid" ng-model="editInfo.vm.loanInfo.mortgageInsuranceType"
+                />
+                <label for="freddiemac">Borrower Paid</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="notRequired" name="mortgageInsuranceType" value="Not Required" ng-model="editInfo.vm.loanInfo.mortgageInsuranceType"
+                />
+                <label for="fha">Not Required</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <p>Impounds:</p>
+                <switch name="enabled" ng-model="editInfo.vm.loanInfo.isImpounds"></switch>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <label for="loanAmount">Loan Amount</label>
+                <input id="loanAmount" type="text" sa-allow-only="numbers" name="loanAmount" value="" ng-model="editInfo.vm.loanInfo.loanAmount"
+                />
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <label for="interestRate">Interest Rate</label>
+                <input id="interestRate" type="text" sa-allow-only="numbers" name="interestRate" value="" ng-model="editInfo.vm.loanInfo.interestRate"
+                />
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <label for="documentType">Document Type:</label>
+                <ui-select id="documentType" class="col-lg-1 col-md-3 col-sm-6 col-xs-12" ng-model="editInfo.vm.loanInfo.documentType">
+                    <ui-select-match placeholder="Select" allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                    <ui-select-choices repeat="d.value as d in editInfo.masters.loanInfoDocumentType | filter: { text: $select.search }">
+                        <span ng-bind-html="d.text | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <!--Ends - Mortgage Insurance -->
+
+        <!--Start - Purpose of Loan-->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <p>Purpose of Loan:</p>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="purchase" name="loanPurpose" value="Purchase" ng-model="editInfo.vm.loanInfo.loanPurpose" ng-click="editInfo.onLoanPurposeChange()"
+                />
+                <label for="purchase">Purchase</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="refinance" name="loanPurpose" value="Refinance" ng-model="editInfo.vm.loanInfo.loanPurpose" ng-click="editInfo.onLoanPurposeChange()"
+                />
+                <label for="refinance">Refinance</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="other" name="loanPurpose" value="Other" ng-model="editInfo.vm.loanInfo.loanPurpose" ng-click="editInfo.onLoanPurposeChange()"
+                />
+                <label for="other">Other:</label>
+                <input type="text" ng-model="editInfo.vm.loanInfo.loanPurpose" ng-show="editInfo.loanPurposeOtherSelected" />
+            </div>
+        </div>
+        <!--Ends - Purpose of Loan-->
+    </div>
+    <!--Ends - Loan Info Section-->
+    <br/>
+    <hr/>
+    </br>
+    <hr/>
+    <!--Start - Property Info Section-->
+    <b> Subject Property </b>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <p>Address</p>
+        <div class="row rowSpace">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <label class="formLabel">Street</label>
+                <input type="text" class="formControl" ng-model="editInfo.vm.propertyInfo.streetAddress">
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <label class="formLabel">City</label>
+                <input type="text" class="formControl" ng-model="editInfo.vm.propertyInfo.city">
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <label class="formLabel">Leagl Description</label>
+                <input type="text" class="formControl" ng-model="editInfo.vm.propertyInfo.legalDescription">
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <label class="formLabel">State</label>
+                <div>
+                    <ui-select ng-model="editInfo.vm.propertyInfo.state">
+                        <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                        <ui-select-choices repeat="d.value as d in editInfo.states | filter: { text: $select.search }">
+                            <span ng-bind-html="d.text | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <label class="formLabel">County</label>
+                <div>
+                    <ui-select ng-model="editInfo.vm.propertyInfo.county">
+                        <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                        <ui-select-choices repeat="d.value as d in editInfo.counties | filter: { text: $select.search }">
+                            <span ng-bind-html="d.text | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <label class="formLabel">ZIP Code</label>
+                <input type="text" maxlength="5" sa-allow-only="numbers" class="formControl" ng-model="editInfo.vm.propertyInfo.zipCode">
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <label class="formLabel">No. of Units</label>
+                <div>
+                    <ui-select ng-model="editInfo.vm.propertyInfo.noOfUnits">
+                        <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                        <ui-select-choices repeat="d.value as d in editInfo.masters.loanInfoNoOfUnits | filter: { text: $select.search }">
+                            <span ng-bind-html="d.text | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <label class="formLabel">Year Built</label>
+                <input type="text" maxlength="4" sa-allow-only="numbers" class="formControl" ng-model="editInfo.vm.propertyInfo.yearBuilt">
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <label class="formLabel">Property type</label>
+                <div>
+                    <ui-select ng-model="editInfo.vm.propertyInfo.propertyType">
+                        <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                        <ui-select-choices repeat="d.value as d in editInfo.masters.loanInfoPropertyTypes | filter: { text: $select.search }">
+                            <span ng-bind-html="d.text | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <label class="formLabel">Estimated Closing Date</label>
+                <div class="input-group">
+                    <input type="text" class="formControl" ng-model="editInfo.vm.propertyInfo.estClosingDate" ng-model-options="{allowInvalid: true}"
+                        si-datepicker="editInfo.estClosingDate" />
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <label class="formLabel">Contigency Removal Date</label>
+                <div class="input-group">
+                    <input type="text" class="formControl" ng-model="editInfo.vm.propertyInfo.contigencyRemovalDate" ng-model-options="{allowInvalid: true}"
+                        si-datepicker="editInfo.contigencyRemovalDate" />
+                </div>
+            </div>
+            <p>Property Will be:</p>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="purchase" name="propertyUsageType" value="Primary Residence" ng-model="editInfo.vm.propertyInfo.propertyUsageType"
+                />
+                <label for="purchase">Primary Residence</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="refinance" name="propertyUsageType" value="Secondary Residence" ng-model="editInfo.vm.propertyInfo.propertyUsageType"
+                />
+                <label for="refinance">Secondary Residence</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="investment" name="propertyUsageType" value="Investment" ng-model="editInfo.vm.propertyInfo.propertyUsageType"
+                />
+                <label for="investment">Investment</label>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <hr/>
+    <!--Starts - Title Section-->
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <p>Title Will Be Held In What Name(s):</p>
+        <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+            <label class="formLabel">Type</label>
+            <div>
+                <ui-select ng-model="editInfo.vm.propertyInfo.title.type">
+                    <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                    <ui-select-choices repeat="d.value as d in editInfo.masters.loanInfoTitleTypes | filter: { text: $select.search }">
+                        <span ng-bind-html="d.text | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" ng-model="editInfo.vm.propertyInfo.title.fullName" />
+        </div>
+        <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+            <label for="fullName">Manner in which Title will be held</label>
+            <div>
+                <ui-select ng-model="editInfo.vm.propertyInfo.title.mannerOfTitle">
+                    <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                    <ui-select-choices repeat="d.value as d in editInfo.masters.loanInfoTitleManner | filter: { text: $select.search }">
+                        <span ng-bind-html="d.text | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+            <label for="fullName">Estate will be held in</label>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="feeSimple" name="estateHeldIn" value="Fee Simple" ng-model="editInfo.vm.propertyInfo.title.estateHeldIn"
+                />
+                <label for="feeSimple">Fee Simple</label>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+                <input type="radio" id="leasehold" name="estateHeldIn" value="Leasehold" ng-model="editInfo.vm.propertyInfo.title.estateHeldIn"
+                />
+                <label for="leasehold">Leasehold</label>
+            </div>
+        </div>
+    </div>
+    <!--Ends - Title Section-->
+    <hr/>
+    <div class="col-lg-1 col-md-3 col-sm-6 col-xs-12">
+            <label for="sourceOfPayment">Source of down Payment, Settlement Charges and/or Subordinate Financing</label>
+            <input type="text" id="sourceOfPayment" name="sourceOfPayment" ng-model="editInfo.vm.propertyInfo.sourceOfPayment" />
+        </div>
+    <div>
+        {{editInfo.vm.propertyInfo.sourceOfPayment}}
+    <!--Ends - Property Info Section-->
+        <button type="submit" class="btn btn-success pull-right" ng-click="editInfo.saveLoanInfo">Save & Next</button>
+    </div>
+    </div>
+</ng-form>

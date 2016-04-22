@@ -57,7 +57,7 @@ namespace app.home {
                     this.getParent().shell.title = '';
                     this.isBusy = false;
                     //this.$state.go('dashboard.pipelineTab');
-                    this.$state.go('loan.info', { loanNumber : 123456789 });
+                    this.$state.go('edit-info', { loanNumber : 123456789 });
                 }, 400);
             }).catch((error: common.ICatchException) => {
                 this.isBusy = false;

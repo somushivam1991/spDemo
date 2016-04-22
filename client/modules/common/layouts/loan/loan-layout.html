@@ -1,6 +1,5 @@
 <div class='wrapper'>
     <header>
-
         <div class="row main-row">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 ">
                 <div class="logo margLogoTop" ui-sref="dashboard.pipelineTab"></div>
@@ -118,27 +117,24 @@
                 </ul>
 
                 <div class="subMenuHolder collapsed">
-                    <div class="dropdown">
-                        <button class="btn btn-primary transBtn dropdown-toggle" type="button" data-toggle="dropdown">
-                            John Smith
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">HTML</a></li>
-                            <li><a href="#">CSS</a></li>
-                            <li><a href="#">JavaScript</a></li>
-                        </ul>
+                    <div>
+                        <ui-select ng-model="layout.borrowerId">
+                            <ui-select-match allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                            <ui-select-choices repeat="d.value as d in layout.employees | filter: { text: $select.search }">
+                                <span ng-bind-html="d.text | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
                     </div>
                     <ul class="subMenuContainer">
-                        <li class="subMenuLoanPropInfoBtn fullComplete"><i><span><a ui-sref="loan.info({loanNumber: 123456789})">Loan & Property Info.</a></span></i></li>
-                        <li class="subMenuBorrowerInfoBtn yetToStart"><i><span><a ui-sref="loan.borrower({loanNumber: 123456789})">Borrower Information</a></span></i></li>
-                        <li class="subMenuEmpIncomeBtn yetToStart"><i><span><a ui-sref="loan.employment({loanNumber: 123456789})">Employment / Income</a></span></i></li>
-                        <li class="subMenuAssetsBtn yetToStart"><i><span><a ui-sref="loan.assert({loanNumber: 123456789})">Assets</a></span></i></li>
-                        <li class="subMenuLiabilitiesBtn semiCompelte"><i><span><a ui-sref="loan.liabilities({loanNumber: 123456789})">Liabilities</a></span></i></li>
-                        <li class="subMenuREOBtn semiCompelte"><i><span><a ui-sref="loan.REO({loanNumber: 123456789})">Schedule of REO</a></span></i></li>
-                        <li class="subMenuTransacDetailsBtn semiCompelte"><i><span><a ui-sref="loan.transactions({loanNumber: 123456789})">Details of Transactions</a></span></i></li>
-                        <li class="subMenuDeclarationsBtn semiCompelte"><i><span><a ui-sref="loan.declarations({loanNumber: 123456789})">Declarations</a></span></i></li>
-                        <li class="subMenuAcknwGovtBtn yetToStart"><i><span><a ui-sref="loan.governmentMonitoring({loanNumber: 123456789})">Acknowledgement & Government Monitoring</a></span></i></li>
+                        <li class="subMenuLoanPropInfoBtn fullComplete"><i><span><a ui-sref="edit-info({loanNumber: layout.loanno})">Loan & Property Info.</a></span></i></li>
+                        <li class="subMenuBorrowerInfoBtn yetToStart"><i><span><a ui-sref="edit-borrower({loanNumber: layout.loanno})">Borrower Information</a></span></i></li>
+                        <li class="subMenuEmpIncomeBtn yetToStart"><i><span><a ui-sref="edit-info({loanNumber: layout.loanno})">Employment / Income</a></span></i></li>
+                        <li class="subMenuAssetsBtn yetToStart"><i><span><a ui-sref="edit-assets({loanNumber: layout.loanno})">Assets</a></span></i></li>
+                        <li class="subMenuLiabilitiesBtn semiCompelte"><i><span><a ui-sref="edit-liability({loanNumber: layout.loanno})">Liabilities</a></span></i></li>
+                        <li class="subMenuREOBtn semiCompelte"><i><span><a ui-sref="edit-info({loanNumber: layout.loanno})">Schedule of REO</a></span></i></li>
+                        <li class="subMenuTransacDetailsBtn semiCompelte"><i><span><a ui-sref="edit-info({loanNumber: layout.loanno})">Details of Transactions</a></span></i></li>
+                        <li class="subMenuDeclarationsBtn semiCompelte"><i><span><a ui-sref="edit-info({loanNumber: layout.loanno})">Declarations</a></span></i></li>
+                        <li class="subMenuAcknwGovtBtn yetToStart"><i><span><a ui-sref="edit-info({loanNumber: layout.loanno})">Acknowledgement & Government Monitoring</a></span></i></li>
                     </ul>
                 </div>
                 <div class='mainAppRightPanel'>

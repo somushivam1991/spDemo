@@ -20,7 +20,8 @@ namespace app.dashboard.pipeline {
                     private alerts: sierra.model.GetAlertsResponse,
                     private popupService: popup.PopupService,
                     private alertWebService: sierra.service.IAlertWebService,
-                    private homeState: app.home.HomeState
+                    private homeState: app.home.HomeState,
+                    private $state: angular.ui.IStateService
                     ) {
                     super($scope, 'dashboard');
                     this.vm = this.pipelineService.createEmptyViewModel();
@@ -231,11 +232,17 @@ namespace app.dashboard.pipeline {
                     filterHeaderTemplate: '<div class="ui-grid-filter-container" ng-repeat="colFilter in col.filters"><div custom-loan-filter filter-column-name="loanPurpose"></div></div>'   }
                 ],
                 enableFiltering: true,
+                useExternalSorting: false,
                 enableSorting: true,
+                multiSelect: false,
                 onRegisterApi: undefined,
                 enableRowSelection: true,
+                enableFullRowSelection: true,
+                enableRowHeaderSelection: false,
                 expandableRowHeight: 50,
                 enablePaginationControls: false,
+                selectedIndex: undefined,
+                noUnselect: true,
                 data: []
             };
             this.pipelineGrid.onRegisterApi = (gridApi: uiGrid.IGridApi) => {
@@ -243,6 +250,11 @@ namespace app.dashboard.pipeline {
                     this.vm.filter.page = newPage;
                     this.vm.filter.pageSize = pageSize;
                     this.bindPipleLineGrid(this.vm.filter, undefined);
+                });
+
+                gridApi.selection.on.rowSelectionChanged(this.$scope, (row: uiGrid.IGridRow) => {
+                    //this.$state.go('edit-borrower', { loanNumber: row.entity.loanNumber });
+                    this.$state.go('edit-borrower', { loanNumber: 1001672 });
                 });
             };
         }

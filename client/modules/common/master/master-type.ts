@@ -6,6 +6,12 @@ namespace app.masters.service {
       prospectView,
       preferredContact,
       occupancyType,
-      lender
+      lender,
+      loanInfoNoOfMonths,
+      loanInfoDocumentType,
+      loanInfoNoOfUnits,
+      loanInfoPropertyTypes,
+      loanInfoTitleTypes,
+      loanInfoTitleManner
   }
 }

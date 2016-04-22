@@ -4,6 +4,12 @@
 namespace common.layouts.loan {
     /* @ngInject */
     export class LayoutController extends ngTemplate.core.bases.LayoutController<shell.ShellController> {
+
+        public username: string = undefined;
+        public loan: sierra.model.ApiResultModelGetLoanResponse;
+        public employees: TextPair[];
+        public borrowerId: string;
+        public loanno: string;
         /* @ngInject */
         constructor($scope: ngTemplate.core.bases.ILayoutControllerScope<shell.ShellController>,
                     private idleTimeoutService: security.IdleTimeoutService,
@@ -11,10 +17,16 @@ namespace common.layouts.loan {
                     private $state: angular.ui.IStateService,
                     private popupService: popup.PopupService,
                     private loanModalsService: modal.LoanModalsService,
-                    private toastr: toastr.IToastrService) {
+                    private toastr: toastr.IToastrService,
+                    private loanServices: LoanServices,
+                    private loanNumber: string) {
                     super($scope);
-
+                    this.loanno = '1001672';
                     this.username = this.getParent().userName;
+                    // if(Boolean(loan)) {
+                    //     this.employees = this.loanServices.createClientTextPair(undefined);
+                    //     this.borrowerId = this.employees[0].value;
+                    // }
 
                     this.idleTimeoutService.start();
                     $scope.$on('IdleTimeout', () => {
@@ -25,7 +37,6 @@ namespace common.layouts.loan {
                         this.idleTimeoutService.idleStart();
                     });
         }
-        public username: string = undefined;
 
         public onLogoffClick(): void {
             this.accountWebService.Account_LogOff().then((data: any) => {
@@ -34,8 +45,6 @@ namespace common.layouts.loan {
                     let key: any = sessionStorage.key(i);
                     sessionStorage.removeItem(key);
                 }
-                //let url = window.location.href;
-                //window.history.go(-window.history.length);
                 this.$state.go('home');
             }).catch((data: ICatchException) => {
                 this.popupService.showInfo('The application has encountered an unknown error.', 'Exception');
@@ -56,6 +65,13 @@ namespace common.layouts.loan {
             return false;
         }
     }
-    export const route: IPageState = createLayoutRoute('loanLayout', 'layouts/loan/loan-layout.html');
+    export const route: IPageState = createLayoutRoute('loanLayout', 'layouts/loan/loan-layout.html', {
+        loanNumber:
+        /* @ngInject */
+        ($stateParams: angular.ui.IStateParamsService): string => {
+            let id: string = $stateParams['loanNumber'];
+            return id;
+        }
+    });
     registerController(LayoutController, route);
 }

@@ -36,7 +36,8 @@ namespace app {
         'ui.router',
         'ui.bootstrap',
         'ui.select',
-        'toggle-switch'
+        'toggle-switch',
+        'uiSwitch'
     ]);
 
     // HTTP interceptor

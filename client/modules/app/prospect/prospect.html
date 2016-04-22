@@ -68,25 +68,25 @@
                 <div class="row rowSpace">
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Home Phone</label>
-                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-model="createProspect.vm.prospects[0].homePhone" ng-blur="createProspect.setPreferredContact('primary')"
-                        name="homePhone0" ng-class="{'error' : !!createProspect.vm.prospects[0].homePhone && createProspect.vm.prospects[0].homePhone.length < 10 && prospectForm.homePhone0.$touched}">
+                        <input type="text" maxlength="10" sa-allow-only="numbers" class="formControl" ng-model="createProspect.vm.prospects[0].homePhone"
+                        ng-blur="createProspect.setPreferredContact('primary')" name="homePhone0" ng-class="{'error' : !!createProspect.vm.prospects[0].homePhone && createProspect.vm.prospects[0].homePhone.length < 10 && prospectForm.homePhone0.$touched}">
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Work Phone</label>
-                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-model="createProspect.vm.prospects[0].workPhone" ng-blur="createProspect.setPreferredContact('primary')"
-                        name="workPhone0" ng-class="{'error' : !!createProspect.vm.prospects[0].workPhone && createProspect.vm.prospects[0].workPhone.length < 10 && prospectForm.workPhone0.$touched}">
+                        <input type="text" maxlength="10" sa-allow-only="numbers" class="formControl" ng-model="createProspect.vm.prospects[0].workPhone"
+                        ng-blur="createProspect.setPreferredContact('primary')" name="workPhone0" ng-class="{'error' : !!createProspect.vm.prospects[0].workPhone && createProspect.vm.prospects[0].workPhone.length < 10 && prospectForm.workPhone0.$touched}">
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Cell Phone</label>
-                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-model="createProspect.vm.prospects[0].cellPhone" ng-blur="createProspect.setPreferredContact('primary')"
-                        name="cellPhone0" ng-class="{'error' : !!createProspect.vm.prospects[0].cellPhone && createProspect.vm.prospects[0].cellPhone.length < 10 && prospectForm.cellPhone0.$touched}">
+                        <input type="text" maxlength="10" sa-allow-only="numbers" class="formControl" ng-model="createProspect.vm.prospects[0].cellPhone"
+                        ng-blur="createProspect.setPreferredContact('primary')" name="cellPhone0" ng-class="{'error' : !!createProspect.vm.prospects[0].cellPhone && createProspect.vm.prospects[0].cellPhone.length < 10 && prospectForm.cellPhone0.$touched}">
                     </div>
                 </div>
                 <div class="row rowSpace">
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 formDropdown">
                         <label class="formLabel">Preferred Contact Method</label>
                         <ui-select ng-model="createProspect.vm.prospects[0].preferredContactMethod" class="dropdown">
-                            <ui-select-match placeholder="Select..." allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                            <ui-select-match placeholder="Select" allow-clear="false">{{$select.selected.text}}</ui-select-match>
                             <ui-select-choices repeat="d.value as d in createProspect.primaryContact | filter:  { text: $select.search }" ui-disable-choice="d.disabled">
                                 <span ng-bind-html="d.text | highlight: $select.search"></span>
                             </ui-select-choices>
@@ -192,8 +192,8 @@
                             <input type="text" ng-disabled="true" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].dateOfBirth"
                             ng-model-options="{allowInvalid: true}" si-datepicker="createProspect.prospectsDatePicker[1]"
                             />
-                            
-                            
+
+
 
                         </div>
                     </div>
@@ -215,18 +215,20 @@
                 <div class="row rowSpace">
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Home Phone</label>
-                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].homePhone"
-                        ng-blur="createProspect.setPreferredContact('primary1')" name="homePhone1" ng-class="{'error' : !!createProspect.vm.prospects[1].homePhone && createProspect.vm.prospects[1].homePhone.length < 10 && prospectForm.homePhone1.$touched}">
+                        <input type="text" maxlength="10" sa-allow-only="numbers" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]"
+                        ng-model="createProspect.vm.prospects[1].homePhone" ng-blur="createProspect.setPreferredContact('primary1')"
+                        name="homePhone1" ng-class="{'error' : !!createProspect.vm.prospects[1].homePhone && createProspect.vm.prospects[1].homePhone.length < 10 && prospectForm.homePhone1.$touched}">
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Work Phone</label>
-                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].workPhone"
-                        ng-blur="createProspect.setPreferredContact('primary1')" name="workPhone1" ng-class="{'error' : !!createProspect.vm.prospects[1].workPhone && createProspect.vm.prospects[1].workPhone.length < 10 && prospectForm.workPhone1.$touched}">
+                        <input type="text" maxlength="10" sa-allow-only="numbers" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]"
+                        ng-model="createProspect.vm.prospects[1].workPhone" ng-blur="createProspect.setPreferredContact('primary1')"
+                        name="workPhone1" ng-class="{'error' : !!createProspect.vm.prospects[1].workPhone && createProspect.vm.prospects[1].workPhone.length < 10 && prospectForm.workPhone1.$touched}">
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Cell Phone</label>
-                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].cellPhone"
-                        ng-change="createProspect.setPreferredContact('primary1')"
+                        <input type="text" maxlength="10" sa-allow-only="numbers" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]"
+                        ng-model="createProspect.vm.prospects[1].cellPhone" ng-change="createProspect.setPreferredContact('primary1')"
                         name="cellPhone1" ng-class="{'error' : !!createProspect.vm.prospects[1].cellPhone && createProspect.vm.prospects[1].cellPhone.length < 10 && prospectForm.cellPhone1.$touched}">
                     </div>
                 </div>
@@ -234,7 +236,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 formDropdown">
                         <label class="formLabel">Preferred Contact Method</label>
                         <ui-select ng-disabled="!createProspect.vm.isCoborrower[1]" ng-model="createProspect.vm.prospects[1].preferredContactMethod">
-                            <ui-select-match placeholder="Select..." allow-clear="false">{{$select.selected.text}}</ui-select-match>
+                            <ui-select-match placeholder="Select" allow-clear="false">{{$select.selected.text}}</ui-select-match>
                             <ui-select-choices repeat="d.value as d in createProspect.coBorContact | filter:  { text: $select.search }" ui-disable-choice="d.disabled">
                                 <span ng-bind-html="d.text | highlight: $select.search"></span>
                             </ui-select-choices>
@@ -294,8 +296,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">ZIP Code</label>
                         <input type="text" maxlength="5" sa-allow-only="numbers" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[1]"
-                        ng-model="createProspect.vm.prospects[1].zip"
-                        name="zipcode1" ng-class="{'error': createProspect.vm.prospects[1].zip && createProspect.vm.prospects[1].zip.length < 5 && prospectForm.zipcode1.$touched}">
+                        ng-model="createProspect.vm.prospects[1].zip" name="zipcode1" ng-class="{'error': createProspect.vm.prospects[1].zip && createProspect.vm.prospects[1].zip.length < 5 && prospectForm.zipcode1.$touched}">
                     </div>
                 </div>
             </div>
@@ -371,17 +372,17 @@
                 <div class="row rowSpace">
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Home Phone</label>
-                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" 
-                        ng-model="createProspect.vm.prospects[2].homePhone" name="homePhone2" ng-class="{'error' : !!createProspect.vm.prospects[2].homePhone && createProspect.vm.prospects[2].homePhone.length < 10 && prospectForm.homePhone2.$touched}">
+                        <input type="text" maxlength="10" sa-allow-only="numbers" class="formControl" ng-model="createProspect.vm.prospects[2].homePhone"
+                        name="homePhone2" ng-class="{'error' : !!createProspect.vm.prospects[2].homePhone && createProspect.vm.prospects[2].homePhone.length < 10 && prospectForm.homePhone2.$touched}">
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Work Phone</label>
-                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-model="createProspect.vm.prospects[2].workPhone"
+                        <input type="text" maxlength="10" sa-allow-only="numbers" class="formControl" ng-model="createProspect.vm.prospects[2].workPhone"
                         name="workPhone2" ng-class="{'error' : !!createProspect.vm.prospects[2].workPhone && createProspect.vm.prospects[2].workPhone.length < 10 && prospectForm.workPhone2.$touched}">
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Cell Phone</label>
-                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-model="createProspect.vm.prospects[2].cellPhone"
+                        <input type="text" maxlength="10" sa-allow-only="numbers" class="formControl" ng-model="createProspect.vm.prospects[2].cellPhone"
                         name="cellPhone2" ng-class="{'error' : !!createProspect.vm.prospects[2].cellPhone && createProspect.vm.prospects[2].cellPhone.length < 10 && prospectForm.cellPhone2.$touched}">
                     </div>
                 </div>
@@ -499,18 +500,18 @@
                 <div class="row rowSpace">
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Home Phone</label>
-                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]" ng-model="createProspect.vm.prospects[3].homePhone"
-                         name="homePhone3" ng-class="{'error' : !!createProspect.vm.prospects[3].homePhone && createProspect.vm.prospects[3].homePhone.length < 10 && prospectForm.homePhone3.$touched}">
+                        <input type="text" maxlength="10" sa-allow-only="numbers" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]"
+                        ng-model="createProspect.vm.prospects[3].homePhone" name="homePhone3" ng-class="{'error' : !!createProspect.vm.prospects[3].homePhone && createProspect.vm.prospects[3].homePhone.length < 10 && prospectForm.homePhone3.$touched}">
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Work Phone</label>
-                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]" ng-model="createProspect.vm.prospects[3].workPhone"
-                        name="workPhone3" ng-class="{'error' : !!createProspect.vm.prospects[3].workPhone && createProspect.vm.prospects[3].workPhone.length < 10 && prospectForm.workPhone3.$touched}">
+                        <input type="text" maxlength="10" sa-allow-only="numbers" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]"
+                        ng-model="createProspect.vm.prospects[3].workPhone" name="workPhone3" ng-class="{'error' : !!createProspect.vm.prospects[3].workPhone && createProspect.vm.prospects[3].workPhone.length < 10 && prospectForm.workPhone3.$touched}">
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Cell Phone</label>
-                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]" ng-model="createProspect.vm.prospects[3].cellPhone"
-                        name="cellPhone3" ng-class="{'error' : !!createProspect.vm.prospects[3].cellPhone && createProspect.vm.prospects[3].cellPhone.length < 10 && prospectForm.cellPhone3.$touched}">
+                        <input type="text" maxlength="10" sa-allow-only="numbers" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]"
+                        ng-model="createProspect.vm.prospects[3].cellPhone" name="cellPhone3" ng-class="{'error' : !!createProspect.vm.prospects[3].cellPhone && createProspect.vm.prospects[3].cellPhone.length < 10 && prospectForm.cellPhone3.$touched}">
                     </div>
                 </div>
                 <div class="row rowSpace">
@@ -546,8 +547,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">ZIP Code</label>
                         <input type="text" maxlength="5" sa-allow-only="numbers" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[3]"
-                        ng-model="createProspect.vm.prospects[3].zip"
-                        name="zipcode3" ng-class="{'error': createProspect.vm.prospects[3].zip && createProspect.vm.prospects[3].zip.length < 5 && prospectForm.zipcode3.$touched}">
+                        ng-model="createProspect.vm.prospects[3].zip" name="zipcode3" ng-class="{'error': createProspect.vm.prospects[3].zip && createProspect.vm.prospects[3].zip.length < 5 && prospectForm.zipcode3.$touched}">
                     </div>
                 </div>
             </div>
@@ -628,24 +628,24 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Alternate Email</label>
                         <input type="text" class="formControl" ng-class="{'error' : createProspect.emailValidation(4, 'amail')}" ng-model="createProspect.vm.prospects[4].alternateEmail"
-                         name="homePhone4" ng-class="{'error' : !!createProspect.vm.prospects[4].homePhone && createProspect.vm.prospects[4].homePhone.length < 10 && prospectForm.homePhone4.$touched}">
+                        name="homePhone4" ng-class="{'error' : !!createProspect.vm.prospects[4].homePhone && createProspect.vm.prospects[4].homePhone.length < 10 && prospectForm.homePhone4.$touched}">
                     </div>
                 </div>
 
                 <div class="row rowSpace">
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Home Phone</label>
-                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-model="createProspect.vm.prospects[4].homePhone"
+                        <input type="text" maxlength="10" sa-allow-only="numbers" class="formControl" ng-model="createProspect.vm.prospects[4].homePhone"
                         name="homePhone4" ng-class="{'error' : !!createProspect.vm.prospects[4].homePhone && createProspect.vm.prospects[4].homePhone.length < 10 && prospectForm.homePhone4.$touched}">
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Work Phone</label>
-                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-model="createProspect.vm.prospects[4].workPhone"
+                        <input type="text" maxlength="10" sa-allow-only="numbers" class="formControl" ng-model="createProspect.vm.prospects[4].workPhone"
                         name="workPhone4" ng-class="{'error' : !!createProspect.vm.prospects[4].workPhone && createProspect.vm.prospects[4].workPhone.length < 10 && prospectForm.workPhone4.$touched}">
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Cell Phone</label>
-                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-model="createProspect.vm.prospects[4].cellPhone"
+                        <input type="text" maxlength="10" sa-allow-only="numbers" class="formControl" ng-model="createProspect.vm.prospects[4].cellPhone"
                         name="cellPhone4" ng-class="{'error' : !!createProspect.vm.prospects[4].cellPhone && createProspect.vm.prospects[4].cellPhone.length < 10 && prospectForm.cellPhone4.$touched}">
                     </div>
                 </div>
@@ -767,18 +767,18 @@
                 <div class="row rowSpace">
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Home Phone</label>
-                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-disabled="!createProspect.vm.isCoborrower[5]" ng-model="createProspect.vm.prospects[5].homePhone"
-                         name="homePhone5" ng-class="{'error' : !!createProspect.vm.prospects[5].homePhone && createProspect.vm.prospects[5].homePhone.length < 10 && prospectForm.homePhone5.$touched}">
+                        <input type="text" maxlength="10" sa-allow-only="numbers" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[5]"
+                        ng-model="createProspect.vm.prospects[5].homePhone" name="homePhone5" ng-class="{'error' : !!createProspect.vm.prospects[5].homePhone && createProspect.vm.prospects[5].homePhone.length < 10 && prospectForm.homePhone5.$touched}">
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Work Phone</label>
-                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-disabled="!createProspect.vm.isCoborrower[5]" ng-model="createProspect.vm.prospects[5].workPhone"
-                        name="workPhone5" ng-class="{'error' : !!createProspect.vm.prospects[5].workPhone && createProspect.vm.prospects[5].workPhone.length < 10 && prospectForm.workPhone5.$touched}">
+                        <input type="text" maxlength="10" sa-allow-only="numbers" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[5]"
+                        ng-model="createProspect.vm.prospects[5].workPhone" name="workPhone5" ng-class="{'error' : !!createProspect.vm.prospects[5].workPhone && createProspect.vm.prospects[5].workPhone.length < 10 && prospectForm.workPhone5.$touched}">
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <label class="formLabel">Cell Phone</label>
-                        <input type="text" maxlength="10" sa-allow-only="numbers"  class="formControl" ng-disabled="!createProspect.vm.isCoborrower[5]" ng-model="createProspect.vm.prospects[5].cellPhone"
-                        name="cellPhone5" ng-class="{'error' : !!createProspect.vm.prospects[5].cellPhone && createProspect.vm.prospects[5].cellPhone.length < 10 && prospectForm.cellPhone5.$touched}">
+                        <input type="text" maxlength="10" sa-allow-only="numbers" class="formControl" ng-disabled="!createProspect.vm.isCoborrower[5]"
+                        ng-model="createProspect.vm.prospects[5].cellPhone" name="cellPhone5" ng-class="{'error' : !!createProspect.vm.prospects[5].cellPhone && createProspect.vm.prospects[5].cellPhone.length < 10 && prospectForm.cellPhone5.$touched}">
                     </div>
                 </div>
                 <div class="row rowSpace">
